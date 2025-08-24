@@ -449,18 +449,26 @@ h6 { font-size: var(--text-lg); }
 }
 
 .cholot-play-button {
-  width: 80px;
-  height: 80px;
-  background: transparent;
+  width: 60px; /* Kleinere Größe */
+  height: 60px;
+  background: rgba(0, 0, 0, 0.3); /* Leicht transparenter Hintergrund */
   border: 2px solid var(--white);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
   transition: all var(--transition-base);
   cursor: pointer;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
+}
+
+/* Service Card Play Buttons - smaller and better positioned */
+.cholot-service-card .cholot-play-button {
+  width: 50px; /* Noch kleiner für Service Cards */
+  height: 50px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1.5px solid var(--white);
 }
 
 .cholot-play-button:hover {
@@ -471,11 +479,26 @@ h6 { font-size: var(--text-lg); }
 }
 
 .cholot-play-button svg {
-  width: 24px;
-  height: 24px;
+  width: 20px; /* Kleinere Icons */
+  height: 20px;
   fill: var(--white);
   margin-left: 3px; /* Optical centering for play triangle */
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+/* Service Card Play Button Icons - extra klein */
+.cholot-service-card .cholot-play-button svg {
+  width: 16px;
+  height: 16px;
+  margin-left: 2px;
+}
+
+/* Service Card Video Overlay - bessere Positionierung */
+.cholot-service-card .cholot-video-overlay {
+  align-items: center; /* Vertikal zentriert */
+  justify-content: center; /* Horizontal zentriert */
+  /* Zusätzlicher Offset um den Button leicht nach oben zu verschieben */
+  padding-bottom: 20px; /* Effektiv nach oben verschieben */
 }
 
 /* Hero Video Play Button */
@@ -538,15 +561,28 @@ h6 { font-size: var(--text-lg); }
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .cholot-play-button {
-    width: 60px;
-    height: 60px;
-    border-width: 2px;
+    width: 50px; /* Noch kleiner auf mobilen Geräten */
+    height: 50px;
+    border-width: 1.5px;
   }
   
   .cholot-play-button svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     margin-left: 2px;
+  }
+  
+  /* Service Card Play Buttons auf Mobile noch kleiner */
+  .cholot-service-card .cholot-play-button {
+    width: 40px;
+    height: 40px;
+    border-width: 1px;
+  }
+  
+  .cholot-service-card .cholot-play-button svg {
+    width: 14px;
+    height: 14px;
+    margin-left: 1px;
   }
   
   .cholot-hero .cholot-play-button {
