@@ -1,0 +1,983 @@
+/* Cholot Component Styles - Luxury Retirement Community */
+
+/* Base Reset & Typography */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--charcoal);
+  background-color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--charcoal-dark);
+  margin-bottom: var(--space-4);
+}
+
+h1 { font-size: var(--text-5xl); }
+h2 { font-size: var(--text-4xl); }
+h3 { font-size: var(--text-3xl); }
+h4 { font-size: var(--text-2xl); }
+h5 { font-size: var(--text-xl); }
+h6 { font-size: var(--text-lg); }
+
+/* Container */
+.cholot-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+/* Header */
+.cholot-header {
+  background: var(--white);
+  border-bottom: 1px solid var(--primary-gold);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  box-shadow: var(--shadow-sm);
+}
+
+.cholot-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-6) 0;
+}
+
+.cholot-logo {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  transition: opacity var(--transition-base);
+}
+
+.cholot-logo:hover {
+  opacity: 0.8;
+}
+
+.cholot-logo-text {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  color: var(--primary-gold);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.cholot-logo-tagline {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--charcoal);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: var(--space-1);
+}
+
+/* Navigation */
+.cholot-nav-list {
+  display: flex;
+  list-style: none;
+  gap: var(--space-8);
+}
+
+.cholot-nav-link {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--charcoal);
+  text-decoration: none;
+  padding: var(--space-2) 0;
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-base);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.cholot-nav-link:hover,
+.cholot-nav-link.active {
+  color: var(--primary-gold);
+  border-bottom-color: var(--primary-gold);
+}
+
+/* Mobile Menu */
+.cholot-mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+}
+
+.cholot-mobile-menu span {
+  width: 24px;
+  height: 2px;
+  background: var(--charcoal);
+  transition: all var(--transition-base);
+}
+
+.cholot-mobile-menu.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.cholot-mobile-menu.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.cholot-mobile-menu.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Hero Section */
+.cholot-hero {
+  background: linear-gradient(135deg, var(--charcoal-dark) 0%, var(--charcoal) 100%);
+  color: var(--white);
+  padding: var(--space-32) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cholot-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><path d="M0 0L50 50L0 100M50 0L100 50L50 100" stroke="rgba(182,140,47,0.1)" stroke-width="0.5" fill="none"/></svg>');
+  opacity: 0.3;
+}
+
+/* Hero Video Background */
+.cholot-hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.cholot-hero-video + .cholot-hero-content {
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.4);
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+}
+
+.cholot-hero-content {
+  position: relative;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.cholot-hero-title {
+  font-size: var(--text-6xl);
+  color: var(--white);
+  margin-bottom: var(--space-6);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.cholot-hero-subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-2xl);
+  color: var(--primary-gold-light);
+  margin-bottom: var(--space-4);
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.cholot-hero-description {
+  font-size: var(--text-lg);
+  color: var(--light-gray);
+  margin-bottom: var(--space-8);
+  line-height: 1.8;
+}
+
+.cholot-hero-cta {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.cholot-btn {
+  display: inline-block;
+  padding: var(--space-4) var(--space-8);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  cursor: pointer;
+  min-width: 200px;
+  text-align: center;
+}
+
+.cholot-btn-primary {
+  background: var(--primary-gold);
+  color: var(--white);
+  border-color: var(--primary-gold);
+}
+
+.cholot-btn-primary:hover {
+  background: var(--primary-gold-dark);
+  border-color: var(--primary-gold-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.cholot-btn-secondary {
+  background: transparent;
+  color: var(--white);
+  border-color: var(--white);
+}
+
+.cholot-btn-secondary:hover {
+  background: var(--white);
+  color: var(--charcoal);
+  transform: translateY(-2px);
+}
+
+/* Services Section */
+.cholot-services {
+  padding: var(--space-24) 0;
+  background: var(--off-white);
+}
+
+.cholot-section-title {
+  font-size: var(--text-5xl);
+  text-align: center;
+  color: var(--charcoal-dark);
+  margin-bottom: var(--space-12);
+  position: relative;
+  padding-bottom: var(--space-6);
+}
+
+.cholot-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: var(--primary-gold);
+}
+
+.cholot-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-8);
+  margin-top: var(--space-12);
+}
+
+.cholot-service-card {
+  /* Subtle dashed border with golden accent - inset with white padding */
+  background: var(--white);
+  border: none; /* Remove direct border */
+  border-radius: 0; /* Square corners */
+  padding: 12px; /* Smaller white space around content */
+  
+  /* Enhanced shadow for depth */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  
+  /* Center alignment and layout */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 480px;
+  justify-content: flex-start;
+  
+  /* Smooth transitions */
+  transition: all var(--transition-slow);
+  cursor: pointer;
+  position: relative;
+  overflow: visible; /* Allow badge to show */
+}
+
+/* Create dashed border using pseudo-element that stops behind image */
+.cholot-service-card::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  border: 1px dashed rgba(182, 140, 47, 0.4);
+  border-radius: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Create a white overlay behind the visible curved image to hide the dashed border */
+.cholot-service-card::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  height: 180px; /* Let dashed line extend even further into the image area */
+  background: var(--white);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Image wrapper container */
+.cholot-service-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow: visible;
+}
+
+/* Enhanced hover effects */
+.cholot-service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 16px 32px rgba(182, 140, 47, 0.12),
+    0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Hover effect for dashed border */
+.cholot-service-card:hover::after {
+  border-color: rgba(182, 140, 47, 0.6);
+}
+
+.cholot-service-card:hover .cholot-service-image img {
+  transform: scale(1.05);
+}
+
+/* Image container with curved bottom edge */
+.cholot-service-image {
+  width: 100%;
+  height: 280px;
+  position: relative;
+  overflow: hidden;
+  /* Icon cuts into bottom of image */
+  clip-path: ellipse(100% 85% at 50% 0%);
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  z-index: 3; /* Ensure image appears above white overlay */
+}
+
+.cholot-service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+/* Service Video Support */
+.cholot-service-image video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.cholot-service-video-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.cholot-service-video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cholot-service-card:hover .cholot-service-image video {
+  transform: scale(1.05);
+}
+
+/* Video Play Button Overlay */
+.cholot-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  z-index: 10;
+  opacity: 0.8;
+}
+
+.cholot-video-overlay:hover {
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 1;
+}
+
+.cholot-play-button {
+  width: 80px;
+  height: 80px;
+  background: transparent;
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  transition: all var(--transition-base);
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+
+.cholot-play-button:hover {
+  transform: scale(1.1);
+  border-color: var(--white);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cholot-play-button svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--white);
+  margin-left: 3px; /* Optical centering for play triangle */
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+/* Hero Video Play Button */
+.cholot-hero .cholot-video-overlay .cholot-play-button {
+  width: 100px;
+  height: 100px;
+  border-width: 3px;
+}
+
+.cholot-hero .cholot-play-button svg {
+  width: 30px;
+  height: 30px;
+  margin-left: 4px; /* Slightly more offset for larger button */
+}
+
+/* Video Modal */
+.cholot-video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cholot-video-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.cholot-video-modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  max-height: 80vh;
+  background: var(--charcoal-dark);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.cholot-video-modal video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cholot-video-modal-close {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 30px;
+  cursor: pointer;
+  padding: 10px;
+  transition: opacity var(--transition-base);
+}
+
+.cholot-video-modal-close:hover {
+  opacity: 0.7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cholot-play-button {
+    width: 60px;
+    height: 60px;
+    border-width: 2px;
+  }
+  
+  .cholot-play-button svg {
+    width: 18px;
+    height: 18px;
+    margin-left: 2px;
+  }
+  
+  .cholot-hero .cholot-play-button {
+    width: 80px;
+    height: 80px;
+    border-width: 2px;
+  }
+  
+  .cholot-hero .cholot-play-button svg {
+    width: 24px;
+    height: 24px;
+    margin-left: 3px;
+  }
+  
+  .cholot-video-modal-content {
+    width: 95%;
+    max-height: 70vh;
+  }
+}
+
+/* Category label badge - positioned below icon */
+.cholot-service-category {
+  position: absolute;
+  bottom: -45px;  /* Badge näher am Icon */
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #B68C2F;
+  background: transparent;  /* Kein Hintergrund */
+  padding: 4px 8px;
+  z-index: 4;
+  white-space: nowrap;
+}
+
+/* Overlapping icon at image bottom - cuts into image */
+.cholot-service-icon {
+  position: absolute;
+  bottom: -15px;  /* Icon sitzt höher */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #B68C2F 0%, #D4A644 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(182, 140, 47, 0.3);
+  transition: all var(--transition-base);
+  z-index: 4; /* Ensure icon appears above everything */
+  border: 4px solid var(--white);
+}
+
+/* Icon inner content styling */
+.cholot-service-icon span {
+  color: var(--white);
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure SVG icons in service cards are white */
+.cholot-service-icon svg {
+  fill: var(--white);
+  color: var(--white);
+}
+
+.cholot-service-card:hover .cholot-service-icon {
+  transform: translateX(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(182, 140, 47, 0.4);
+}
+
+/* Content wrapper for proper spacing */
+.cholot-service-content {
+  padding: 55px 30px 30px; /* Weniger Padding wegen höherem Icon */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.cholot-service-title {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--charcoal-dark);
+  margin-bottom: var(--space-4);
+  line-height: 1.3;
+  text-align: center;
+  transition: color var(--transition-base);
+}
+
+.cholot-service-card:hover .cholot-service-title {
+  color: #B68C2F;
+}
+
+.cholot-service-description {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--warm-gray);
+  line-height: 1.7;
+  text-align: center;
+  margin-bottom: var(--space-8);
+  flex: 1;
+  max-width: 90%;
+}
+
+.cholot-service-link {
+  color: #B68C2F;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: var(--font-body);
+  transition: all var(--transition-base);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  display: inline-block;
+  margin-top: auto;
+}
+
+.cholot-service-link:hover {
+  color: #9A7428;
+  background: rgba(182, 140, 47, 0.1);
+  transform: translateX(3px);
+}
+
+/* Content Blocks */
+.cholot-content-block {
+  padding: var(--space-24) 0;
+}
+
+.cholot-content-text-only {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cholot-content-image-left,
+.cholot-content-image-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+.cholot-content-image-right .cholot-content-image {
+  order: 2;
+}
+
+.cholot-content-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.cholot-content-heading {
+  font-size: var(--text-4xl);
+  color: var(--charcoal-dark);
+  margin-bottom: var(--space-6);
+}
+
+.cholot-content-body {
+  font-size: var(--text-lg);
+  color: var(--warm-gray);
+  line-height: 1.8;
+}
+
+.cholot-content-body p {
+  margin-bottom: var(--space-4);
+}
+
+/* Testimonials */
+.cholot-testimonials {
+  padding: var(--space-24) 0;
+  background: var(--light-gray);
+}
+
+.cholot-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: var(--space-8);
+  margin-top: var(--space-12);
+}
+
+.cholot-testimonial {
+  background: var(--white);
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.cholot-testimonial::before {
+  content: '"';
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-6);
+  font-size: var(--text-6xl);
+  color: var(--primary-gold);
+  opacity: 0.2;
+  font-family: var(--font-heading);
+}
+
+.cholot-testimonial blockquote {
+  font-size: var(--text-lg);
+  color: var(--charcoal);
+  line-height: 1.8;
+  font-style: italic;
+  margin-bottom: var(--space-4);
+  padding-left: var(--space-8);
+}
+
+.cholot-testimonial cite {
+  display: block;
+  text-align: right;
+  color: var(--warm-gray);
+  font-size: var(--text-base);
+  font-style: normal;
+  padding-right: var(--space-4);
+}
+
+/* CTA Section */
+.cholot-cta-section {
+  padding: var(--space-24) 0;
+  background: linear-gradient(135deg, var(--primary-gold-dark) 0%, var(--primary-gold) 100%);
+  text-align: center;
+  color: var(--white);
+}
+
+.cholot-cta-title {
+  font-size: var(--text-5xl);
+  margin-bottom: var(--space-4);
+  color: var(--white);
+}
+
+.cholot-cta-subtitle {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-8);
+  color: var(--off-white);
+}
+
+.cholot-cta-buttons {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Footer */
+.cholot-footer {
+  background: var(--charcoal-dark);
+  color: var(--light-gray);
+  padding: var(--space-16) 0 var(--space-8);
+}
+
+.cholot-footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 2fr;
+  gap: var(--space-12);
+  margin-bottom: var(--space-12);
+}
+
+.cholot-footer-title {
+  font-size: var(--text-2xl);
+  color: var(--primary-gold);
+  margin-bottom: var(--space-4);
+}
+
+.cholot-footer-heading {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  color: var(--white);
+  margin-bottom: var(--space-4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cholot-footer-text {
+  line-height: 1.8;
+  color: var(--warm-gray);
+}
+
+.cholot-footer-links {
+  list-style: none;
+}
+
+.cholot-footer-links li {
+  margin-bottom: var(--space-2);
+}
+
+.cholot-footer-links a {
+  color: var(--light-gray);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.cholot-footer-links a:hover {
+  color: var(--primary-gold);
+}
+
+.cholot-footer-contact {
+  font-style: normal;
+}
+
+.cholot-footer-contact p {
+  margin-bottom: var(--space-2);
+}
+
+.cholot-footer-contact a {
+  color: var(--primary-gold);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.cholot-footer-contact a:hover {
+  color: var(--primary-gold-light);
+}
+
+.cholot-footer-bottom {
+  text-align: center;
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--charcoal);
+  color: var(--warm-gray);
+  font-size: var(--text-sm);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .cholot-footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+  
+  .cholot-content-image-left,
+  .cholot-content-image-right {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  
+  .cholot-content-image-right .cholot-content-image {
+    order: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .cholot-mobile-menu {
+    display: flex;
+  }
+  
+  .cholot-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-top: 1px solid var(--primary-gold);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .cholot-nav.active {
+    display: block;
+  }
+  
+  .cholot-nav-list {
+    flex-direction: column;
+    padding: var(--space-4);
+    gap: var(--space-2);
+  }
+  
+  .cholot-nav-link {
+    display: block;
+    padding: var(--space-3) var(--space-4);
+  }
+  
+  .cholot-hero-title {
+    font-size: var(--text-4xl);
+  }
+  
+  .cholot-hero-subtitle {
+    font-size: var(--text-xl);
+  }
+  
+  .cholot-services-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  
+  .cholot-testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cholot-footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .cholot-btn {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .cholot-header,
+  .cholot-footer,
+  .cholot-mobile-menu,
+  .cholot-hero-cta,
+  .cholot-cta-section {
+    display: none;
+  }
+  
+  body {
+    color: black;
+    background: white;
+  }
+  
+  .cholot-hero {
+    background: white;
+    color: black;
+    padding: var(--space-8) 0;
+  }
+  
+  .cholot-hero-title,
+  .cholot-hero-subtitle {
+    color: black;
+  }
+}

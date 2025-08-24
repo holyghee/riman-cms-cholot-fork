@@ -1,0 +1,223 @@
+/* ABSOLUTE Header Fix - Guarantees 100% identical header on all pages */
+/* This overrides ALL other styles to ensure perfect consistency */
+
+/* Reset everything first */
+.cholot-header,
+.cholot-header * {
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    transition: none !important; /* Remove ALL transitions to prevent load effects */
+    animation: none !important; /* Remove ALL animations */
+    transform: none !important; /* Reset any transforms */
+}
+
+/* Header container - FIXED positioning and dimensions */
+.cholot-header {
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 140px !important;
+    min-height: 140px !important;
+    max-height: 140px !important;
+    background: #ffffff !important;
+    border-bottom: 1px solid #b68c2f !important;
+    z-index: 1000 !important;
+    display: block !important;
+    overflow: visible !important;
+}
+
+/* Container wrapper - FIXED width and centering */
+.cholot-header .cholot-container {
+    width: 100% !important;
+    max-width: 1200px !important;
+    height: 140px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+    position: relative !important;
+}
+
+/* Header content - FIXED layout */
+.cholot-header-content {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    height: 140px !important;
+    width: 100% !important;
+}
+
+/* Logo - ABSOLUTE positioning for consistency */
+.cholot-header .cholot-logo {
+    position: absolute !important;
+    left: 20px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    height: auto !important;
+    width: auto !important;
+}
+
+/* Logo text - FIXED styles */
+.cholot-logo-text {
+    display: block !important;
+    font-family: "Playfair Display", Georgia, serif !important;
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    color: #b68c2f !important;
+    letter-spacing: -0.5px !important;
+    margin-bottom: 4px !important;
+    padding: 0 !important;
+}
+
+/* Logo tagline - FIXED styles */
+.cholot-logo-tagline {
+    display: block !important;
+    font-family: "Source Sans Pro", Arial, sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    line-height: 1.2 !important;
+    color: #666666 !important;
+    letter-spacing: 0.5px !important;
+    padding: 0 !important;
+}
+
+/* Navigation - ABSOLUTE positioning for consistency */
+.cholot-header .cholot-nav {
+    position: absolute !important;
+    right: 20px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    height: auto !important;
+}
+
+/* Navigation list - FIXED layout */
+.cholot-nav-list {
+    display: flex !important;
+    align-items: center !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important; /* Remove gap, use margin instead */
+}
+
+/* Navigation items - FIXED spacing */
+.cholot-nav-list li {
+    display: inline-block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+}
+
+/* Navigation links - ABSOLUTE FIXED styles */
+.cholot-nav-link {
+    display: inline-block !important;
+    font-family: "Source Sans Pro", Arial, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    color: #2c2c2c !important;
+    text-decoration: none !important;
+    padding: 10px 16px !important;
+    margin: 0 !important;
+    position: relative !important;
+    white-space: nowrap !important;
+    letter-spacing: 0 !important;
+}
+
+/* Hover state - controlled */
+.cholot-nav-link:hover {
+    color: #b68c2f !important;
+    background: transparent !important;
+    text-decoration: none !important;
+}
+
+/* Active/current page indicator */
+.cholot-nav-link.current,
+.cholot-nav-link[aria-current="page"] {
+    color: #b68c2f !important;
+    font-weight: 600 !important;
+}
+
+/* Mobile menu button - hidden on desktop */
+.cholot-mobile-menu {
+    display: none !important;
+}
+
+/* Force recalculation to prevent render differences */
+.cholot-header::before,
+.cholot-header::after {
+    content: '' !important;
+    display: table !important;
+    clear: both !important;
+}
+
+/* Prevent any font loading issues */
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-display: block; /* Prevent FOUT */
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    font-display: block; /* Prevent FOUT */
+}
+
+/* Mobile responsive - simplified */
+@media (max-width: 768px) {
+    .cholot-header {
+        height: 80px !important;
+        min-height: 80px !important;
+        max-height: 80px !important;
+    }
+    
+    .cholot-header .cholot-container,
+    .cholot-header-content {
+        height: 80px !important;
+    }
+    
+    .cholot-nav {
+        display: none !important;
+    }
+    
+    .cholot-mobile-menu {
+        display: block !important;
+        position: absolute !important;
+        right: 20px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        width: 30px !important;
+        height: 24px !important;
+        background: transparent !important;
+        border: none !important;
+        cursor: pointer !important;
+        padding: 0 !important;
+    }
+    
+    .cholot-mobile-menu span {
+        display: block !important;
+        width: 100% !important;
+        height: 2px !important;
+        background: #2c2c2c !important;
+        margin: 5px 0 !important;
+    }
+}
+
+/* Critical: Prevent layout shift on load */
+.cholot-header {
+    contain: layout style paint !important;
+    will-change: auto !important;
+}
+
+/* Force GPU acceleration for consistent rendering */
+.cholot-header,
+.cholot-header-content,
+.cholot-nav {
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
+}

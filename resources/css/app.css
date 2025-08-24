@@ -1,0 +1,71 @@
+/* Import Cholot Design System First */
+@import './cholot-tokens.css';
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    /* Cholot Typography Override */
+    --font-sans: 'Source Sans Pro', 'Helvetica Neue', Arial, ui-sans-serif, system-ui, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
+}
+
+/* Custom Styles */
+@layer components {
+    /* Navigation Links */
+    .nav-link {
+        @apply text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200;
+    }
+    
+    .nav-link-active {
+        @apply text-blue-600 font-semibold;
+    }
+    
+    /* Buttons */
+    .btn-primary {
+        @apply inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-md hover:shadow-lg;
+    }
+    
+    .btn-secondary {
+        @apply inline-flex items-center justify-center px-6 py-3 bg-gray-100 text-gray-800 font-semibold rounded-lg hover:bg-gray-200 transition-all duration-300;
+    }
+    
+    .btn-outline {
+        @apply inline-flex items-center justify-center px-6 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300;
+    }
+    
+    /* Cards */
+    .card {
+        @apply bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300;
+    }
+    
+    .card-hover {
+        @apply transform hover:-translate-y-1 transition-transform duration-300;
+    }
+    
+    /* Section Headers */
+    .section-title {
+        @apply text-4xl md:text-5xl font-bold text-gray-900 mb-4;
+    }
+    
+    .section-subtitle {
+        @apply text-xl text-gray-600 max-w-3xl mx-auto;
+    }
+    
+    /* Form Elements */
+    .form-input {
+        @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200;
+    }
+    
+    .form-label {
+        @apply block text-sm font-semibold text-gray-700 mb-2;
+    }
+    
+    /* Container */
+    .container-custom {
+        @apply container mx-auto px-4 max-w-7xl;
+    }
+}
