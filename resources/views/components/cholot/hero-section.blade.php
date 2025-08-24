@@ -3,13 +3,28 @@
     'subtitle' => 'Premium Retirement Living',
     'description' => 'Experience elegance, warmth, and professional care in our beautiful retirement community.',
     'backgroundImage' => '/images/cholot-hero-bg.jpg',
+    'heroVideo' => '/storage/pages/hero/uGY5rFai7R3hKBSRJb5YVvh0O2D7XQDSyxh8JtZL.mp4',
     'ctaText' => 'Schedule Your Tour',
     'ctaLink' => '/tour'
 ])
 
-<!-- Cholot Hero Section - AUTHENTIC WordPress Theme Style -->
+<!-- Cholot Hero Section with Auto-Playing Background Video -->
 <section class="cholot-hero relative overflow-hidden" 
          style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ $backgroundImage }}');">
+    
+    <!-- Background Video -->
+    @if($heroVideo)
+        <video class="cholot-hero-video" 
+               autoplay 
+               muted 
+               loop 
+               playsinline
+               preload="auto"
+               poster="{{ $backgroundImage }}">
+            <source src="{{ $heroVideo }}" type="video/mp4">
+            <!-- Fallback für Browser ohne Video-Support -->
+        </video>
+    @endif
     
     <div class="cholot-hero-content">
         <div class="max-w-4xl mx-auto text-center">

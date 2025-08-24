@@ -161,7 +161,7 @@ h6 { font-size: var(--text-lg); }
   opacity: 0.3;
 }
 
-/* Hero Video Background */
+/* Hero Video Background - Auto-Play ohne Controls */
 .cholot-hero-video {
   position: absolute;
   top: 0;
@@ -170,6 +170,17 @@ h6 { font-size: var(--text-lg); }
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  pointer-events: none; /* Verhindert Klick-Interaktionen */
+}
+
+/* Verstecke alle Video-Controls und Play-Buttons in der Hero-Sektion */
+.cholot-hero .cholot-play-button,
+.cholot-hero .cholot-video-overlay,
+.cholot-hero video::-webkit-media-controls,
+.cholot-hero video::-webkit-media-controls-panel,
+.cholot-hero video::-webkit-media-controls-play-button,
+.cholot-hero video::-webkit-media-controls-start-playback-button {
+  display: none !important;
 }
 
 .cholot-hero-video + .cholot-hero-content {
@@ -480,20 +491,9 @@ h6 { font-size: var(--text-lg); }
   margin-left: 4px; /* Slightly more offset for larger button */
 }
 
-/* Video Modal */
+/* Video Modal - DEAKTIVIERT für Hero-Videos */
 .cholot-video-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  display: none !important; /* Komplett deaktiviert */
 }
 
 .cholot-video-modal.active {
