@@ -4,24 +4,26 @@
 @php
 use Illuminate\Support\Facades\Storage;
 @endphp
-    {{-- Show Hero Section only if enabled --}}
-    @if($page->show_hero)
+    {{-- Show Hero Section - Always enabled for homepage --}}
+    @if($page->show_hero || $page->slug === 'home' || $page->template === 'cholot-home')
         @php
+            // Check for hero video - priority: hero_image, then default video path
+            $heroVideo = '/storage/pages/hero/uGY5rFai7R3hKBSRJb5YVvh0O2D7XQDSyxh8JtZL.mp4';
+            $heroImage = $page->hero_image ?? '/images/cholot-hero-bg.jpg';
             $heroMediaIsVideo = $page->hero_image && (str_ends_with(strtolower($page->hero_image), '.mp4') || str_ends_with(strtolower($page->hero_image), '.webm') || str_ends_with(strtolower($page->hero_image), '.ogg'));
         @endphp
-        <section class="cholot-hero" @if($page->hero_image && !$heroMediaIsVideo) style="background-image: url('/storage/{{ $page->hero_image }}'); background-size: cover; background-position: center;" @endif>
-            @if($heroMediaIsVideo)
-                {{-- Create a thumbnail from first frame or use a fallback image --}}
-                <div class="cholot-hero-video-container" style="background-image: url('/storage/{{ $page->hero_image }}'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
-                    <div class="cholot-video-overlay" onclick="openVideoModal('/storage/{{ $page->hero_image }}', '{{ $page->hero_image_alt ?? '' }}')">
-                        <button class="cholot-play-button" aria-label="Play video">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            @endif
+        <section class="cholot-hero" @if($heroImage && !$heroMediaIsVideo) style="background-image: url('/storage/{{ $heroImage }}'); background-size: cover; background-position: center;" @endif>
+            {{-- Background Video - Auto-Play ohne Controls --}}
+            <video class="cholot-hero-video" 
+                   autoplay 
+                   muted 
+                   loop 
+                   playsinline
+                   preload="auto"
+                   poster="{{ $heroImage }}">
+                <source src="{{ $heroVideo }}" type="video/mp4">
+                <!-- Fallback für Browser ohne Video-Support -->
+            </video>
             <div class="cholot-hero-content">
                 <h1 class="cholot-hero-title">{{ $page->hero_title ?? $page->title }}</h1>
                 @if($page->hero_subtitle)
@@ -30,6 +32,15 @@ use Illuminate\Support\Facades\Storage;
                 @if($page->excerpt)
                     <p class="cholot-hero-description">{{ $page->excerpt }}</p>
                 @endif
+                
+                <div class="cholot-hero-cta">
+                    <a href="/kontakt" class="cholot-btn cholot-btn-primary">
+                        Jetzt Beratung anfragen
+                    </a>
+                    <a href="#leistungen" class="cholot-btn cholot-btn-secondary">
+                        Unsere Leistungen
+                    </a>
+                </div>
             </div>
         </section>
     @endif
@@ -325,7 +336,7 @@ use Illuminate\Support\Facades\Storage;
         @endif
     @endif
 
-    {{-- Video Modal --}}
+    {{-- Video Modal - DEAKTIVIERT für Hero-Videos (nur noch für Service-Videos) --}}
     <div id="videoModal" class="cholot-video-modal">
         <div class="cholot-video-modal-content">
             <button class="cholot-video-modal-close" onclick="closeVideoModal()" aria-label="Close video">&times;</button>
@@ -399,6 +410,42 @@ use Illuminate\Support\Facades\Storage;
             if (e.key === 'Escape') {
                 closeVideoModal();
             }
+        });
+        
+        // Hero Video Auto-Play Setup - verhindert Click-Handler auf Hero-Videos
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroVideos = document.querySelectorAll('.cholot-hero-video');
+            
+            heroVideos.forEach(video => {
+                // Stelle sicher, dass das Video alle erforderlichen Attribute hat
+                video.autoplay = true;
+                video.muted = true;
+                video.loop = true;
+                video.playsInline = true;
+                video.controls = false;
+                
+                // Force play wenn möglich
+                const playVideo = () => {
+                    video.play().catch(error => {
+                        console.log('Hero video autoplay failed:', error);
+                        // Fallback: Video stumm schalten und erneut versuchen
+                        video.muted = true;
+                        video.play().catch(e => console.log('Second attempt failed:', e));
+                    });
+                };
+                
+                // Versuche sofort zu spielen
+                if (video.readyState >= 3) { // HAVE_FUTURE_DATA
+                    playVideo();
+                } else {
+                    video.addEventListener('canplay', playVideo, { once: true });
+                }
+                
+                // Stelle sicher, dass das Video nie pausiert
+                video.addEventListener('pause', () => {
+                    video.play();
+                });
+            });
         });
     </script>
 @endsection
