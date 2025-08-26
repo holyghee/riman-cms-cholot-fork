@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIMAN CMS - Style Guide & Implementierungen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* RIMAN/Cholot Farben */
+            --primary-gold: #b68c2f;
+            --primary-gold-light: #d4a543;
+            --primary-gold-dark: #9a7528;
+            --charcoal: #333333;
+            --charcoal-dark: #1a1a1a;
+            --white: #ffffff;
+            --off-white: #fafafa;
+            --gray-light: #f5f5f5;
+            --gray-medium: #777777;
+            --gray-dark: #555555;
+            
+            /* Schriftarten */
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+            
+            /* Abstände */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --space-3xl: 64px;
+            
+            /* Schatten */
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 8px rgba(0,0,0,0.15);
+            --shadow-lg: 0 8px 16px rgba(0,0,0,0.2);
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--charcoal);
+            background: var(--off-white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        /* Header */
+        .guide-header {
+            background: white;
+            border-bottom: 3px solid var(--primary-gold);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--space-3xl);
+        }
+
+        .guide-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--primary-gold);
+            font-weight: 700;
+            padding: var(--space-2xl) 0 var(--space-lg);
+        }
+
+        .guide-subtitle {
+            font-family: var(--font-body);
+            font-size: 1.2rem;
+            color: var(--gray-medium);
+            margin-bottom: var(--space-xl);
+        }
+
+        /* Navigation */
+        .guide-nav {
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: var(--space-2xl);
+        }
+
+        .guide-nav-list {
+            display: flex;
+            list-style: none;
+            gap: var(--space-xl);
+            padding: var(--space-lg) 0;
+        }
+
+        .guide-nav-link {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-weight: 600;
+            padding: var(--space-sm) var(--space-md);
+            border-bottom: 2px solid transparent;
+            transition: all var(--transition-fast);
+        }
+
+        .guide-nav-link:hover {
+            color: var(--primary-gold);
+            border-bottom-color: var(--primary-gold);
+        }
+
+        /* Sections */
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--charcoal-dark);
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-md);
+            border-bottom: 2px solid var(--primary-gold);
+        }
+
+        .subsection-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+            margin: var(--space-xl) 0 var(--space-lg) 0;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: var(--space-md);
+            margin: var(--space-md) 0;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .code-inline {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: var(--primary-gold-dark);
+        }
+
+        /* Implementation Cards */
+        .implementation-grid {
+            display: grid;
+            gap: var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+
+        .implementation-card {
+            background: var(--gray-light);
+            border-left: 4px solid var(--primary-gold);
+            padding: var(--space-lg);
+            border-radius: 4px;
+        }
+
+        .implementation-title {
+            font-weight: 600;
+            color: var(--charcoal-dark);
+            margin-bottom: var(--space-sm);
+        }
+
+        .implementation-description {
+            color: var(--gray-dark);
+            margin-bottom: var(--space-md);
+        }
+
+        /* Hero Demo */
+        .hero-demo {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23333" width="1200" height="400"/><text x="50%" y="50%" fill="%23666" font-size="24" text-anchor="middle" dominant-baseline="middle">Video Background Placeholder</text></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: var(--space-xl) 0;
+        }
+
+        .hero-content-demo {
+            text-align: center;
+            color: white;
+            z-index: 1;
+        }
+
+        .hero-title-demo {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .hero-subtitle-demo {
+            font-size: 1.2rem;
+            margin-bottom: var(--space-xl);
+        }
+
+        /* Service Cards Demo */
+        .service-grid-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-xl);
+            margin: var(--space-xl) 0;
+        }
+
+        .service-card-demo {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-normal);
+        }
+
+        .service-card-demo:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-image-demo {
+            position: relative;
+            height: 200px;
+            background: linear-gradient(45deg, var(--primary-gold), var(--primary-gold-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-button-demo {
+            width: 50px;
+            height: 50px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .play-button-demo:hover {
+            background: rgba(0,0,0,0.7);
+            transform: scale(1.1);
+        }
+
+        .service-content-demo {
+            padding: var(--space-lg);
+        }
+
+        .service-title-demo {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: var(--charcoal-dark);
+            margin-bottom: var(--space-sm);
+        }
+
+        .service-description-demo {
+            color: var(--gray-medium);
+            line-height: 1.6;
+        }
+
+        /* Features List */
+        .features-list {
+            list-style: none;
+            margin: var(--space-lg) 0;
+        }
+
+        .features-list li {
+            padding: var(--space-md);
+            background: var(--gray-light);
+            margin-bottom: var(--space-sm);
+            border-radius: 4px;
+            position: relative;
+            padding-left: var(--space-2xl);
+        }
+
+        .features-list li::before {
+            content: "✓";
+            position: absolute;
+            left: var(--space-md);
+            color: var(--primary-gold);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            margin: var(--space-xl) 0;
+            padding-left: var(--space-xl);
+            border-left: 3px solid var(--primary-gold);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: var(--space-xl);
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: calc(-1 * var(--space-xl) - 8px);
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .timeline-time {
+            color: var(--primary-gold);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: var(--charcoal-dark);
+            margin-bottom: var(--space-sm);
+        }
+
+        .timeline-description {
+            color: var(--gray-medium);
+        }
+
+        /* Buttons Demo */
+        .button-group {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            margin: var(--space-lg) 0;
+        }
+
+        .btn-demo {
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary-demo {
+            background: var(--primary-gold);
+            color: white;
+        }
+
+        .btn-primary-demo:hover {
+            background: var(--primary-gold-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary-demo {
+            background: transparent;
+            color: var(--primary-gold);
+            border: 2px solid var(--primary-gold);
+        }
+
+        .btn-secondary-demo:hover {
+            background: var(--primary-gold);
+            color: white;
+        }
+
+        /* Color Palette */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-xl) 0;
+        }
+
+        .color-card {
+            text-align: center;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .color-sample {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .color-info {
+            padding: var(--space-md);
+            background: white;
+        }
+
+        .color-name {
+            font-weight: 600;
+            color: var(--charcoal-dark);
+            margin-bottom: var(--space-xs);
+        }
+
+        .color-hex {
+            font-family: 'Monaco', monospace;
+            font-size: 0.9rem;
+            color: var(--gray-medium);
+        }
+    </style>
+</head>
+<body>
+    <header class="guide-header">
+        <div class="container">
+            <h1 class="guide-title">RIMAN CMS Style Guide</h1>
+            <p class="guide-subtitle">Dokumentation aller Implementierungen und Änderungen</p>
+        </div>
+    </header>
+
+    <nav class="guide-nav">
+        <div class="container">
+            <ul class="guide-nav-list">
+                <li><a href="#overview" class="guide-nav-link">Übersicht</a></li>
+                <li><a href="#implementations" class="guide-nav-link">Implementierungen</a></li>
+                <li><a href="#components" class="guide-nav-link">Komponenten</a></li>
+                <li><a href="#timeline" class="guide-nav-link">Zeitverlauf</a></li>
+                <li><a href="#colors" class="guide-nav-link">Farben</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Übersicht Section -->
+        <section id="overview" class="section">
+            <h2 class="section-title">📋 Projekt Übersicht</h2>
+            
+            <div class="implementation-grid">
+                <div class="implementation-card">
+                    <h3 class="implementation-title">Projekt Details</h3>
+                    <p class="implementation-description">
+                        <strong>Name:</strong> RIMAN CMS mit Cholot Theme<br>
+                        <strong>Stack:</strong> Laravel 11 + Filament 3 + Blade Templates<br>
+                        <strong>Repository:</strong> <code class="code-inline">github.com/holyghee/riman-cms-cholot-fork</code><br>
+                        <strong>Port:</strong> localhost:8003
+                    </p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">✨ Hauptfunktionen die wir implementiert haben</h3>
+            <ul class="features-list">
+                <li>Hero Section mit Autoplay Video (ohne Play-Button und Popup)</li>
+                <li>Service Cards mit Video-Modal Funktionalität</li>
+                <li>Optimierte Play-Button Positionierung (50px, weiter oben)</li>
+                <li>GitHub Repository Setup und Git Integration</li>
+                <li>Vite Build System für Asset-Kompilierung</li>
+                <li>Responsive Design mit Cholot Theme</li>
+                <li>Video-Modal Reparatur (Freezing-Bug behoben)</li>
+            </ul>
+        </section>
+
+        <!-- Implementierungen Section -->
+        <section id="implementations" class="section">
+            <h2 class="section-title">🚀 Unsere Implementierungen</h2>
+
+            <h3 class="subsection-title">1. Hero Video Autoplay</h3>
+            <div class="implementation-card">
+                <h4 class="implementation-title">Problem:</h4>
+                <p class="implementation-description">Hero Video sollte automatisch im Hintergrund laufen, ohne Play-Button und ohne Popup.</p>
+                
+                <h4 class="implementation-title">Lösung:</h4>
+                <div class="code-block">
+&lt;video class="cholot-hero-video" 
+       autoplay 
+       muted 
+       loop 
+       playsinline
+       preload="auto"&gt;
+    &lt;source src="{{ $heroVideo }}" type="video/mp4"&gt;
+&lt;/video&gt;</div>
+                
+                <h4 class="implementation-title">CSS Anpassungen:</h4>
+                <div class="code-block">
+.cholot-hero .cholot-play-button,
+.cholot-hero .cholot-video-overlay,
+.cholot-hero video::-webkit-media-controls {
+    display: none !important;
+}</div>
+            </div>
+
+            <h3 class="subsection-title">2. Service Card Play-Buttons</h3>
+            <div class="implementation-card">
+                <h4 class="implementation-title">Anpassungen:</h4>
+                <ul>
+                    <li>Button-Größe reduziert auf 50px × 50px</li>
+                    <li>Position nach oben verschoben mit <code class="code-inline">padding-bottom: 40px</code></li>
+                    <li>Halbtransparenter Hintergrund <code class="code-inline">rgba(0,0,0,0.5)</code></li>
+                </ul>
+                
+                <div class="code-block">
+.cholot-service-card .cholot-play-button {
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: 40px;
+}</div>
+            </div>
+
+            <h3 class="subsection-title">3. Video Modal Fix</h3>
+            <div class="implementation-card">
+                <h4 class="implementation-title">Problem:</h4>
+                <p class="implementation-description">Video Popup wurde nicht angezeigt und die Seite fror ein.</p>
+                
+                <h4 class="implementation-title">Lösung:</h4>
+                <p class="implementation-description">Modal CSS korrigiert - <code class="code-inline">display: none !important</code> entfernt</p>
+                
+                <div class="code-block">
+.cholot-video-modal {
+    display: none; /* Nicht display: none !important */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+}</div>
+            </div>
+        </section>
+
+        <!-- Komponenten Section -->
+        <section id="components" class="section">
+            <h2 class="section-title">🎨 Komponenten Demo</h2>
+
+            <h3 class="subsection-title">Hero Section</h3>
+            <div class="hero-demo">
+                <div class="hero-content-demo">
+                    <h1 class="hero-title-demo">Professionelles Rückbaumanagement</h1>
+                    <p class="hero-subtitle-demo">Ihr Partner für nachhaltige Sanierung und Mediation</p>
+                    <div class="button-group">
+                        <button class="btn-demo btn-primary-demo">Jetzt Beratung anfragen</button>
+                        <button class="btn-demo btn-secondary-demo">Unsere Leistungen</button>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Service Cards</h3>
+            <div class="service-grid-demo">
+                <div class="service-card-demo">
+                    <div class="service-image-demo">
+                        <div class="play-button-demo">▶</div>
+                    </div>
+                    <div class="service-content-demo">
+                        <h4 class="service-title-demo">Rückbaumanagement</h4>
+                        <p class="service-description-demo">Professionelle Planung und Durchführung von Rückbauarbeiten mit Fokus auf Nachhaltigkeit.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card-demo">
+                    <div class="service-image-demo">
+                        <div class="play-button-demo">▶</div>
+                    </div>
+                    <div class="service-content-demo">
+                        <h4 class="service-title-demo">Altlastensanierung</h4>
+                        <p class="service-description-demo">Fachgerechte Sanierung kontaminierter Flächen und Gebäude nach modernsten Standards.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card-demo">
+                    <div class="service-image-demo">
+                        <div class="play-button-demo">▶</div>
+                    </div>
+                    <div class="service-content-demo">
+                        <h4 class="service-title-demo">Mediation im Bauwesen</h4>
+                        <p class="service-description-demo">Professionelle Konfliktlösung und Risikomanagement für Bauprojekte.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="timeline" class="section">
+            <h2 class="section-title">⏱️ Entwicklungs-Timeline</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">24.08.2025 - 19:00</div>
+                    <div class="timeline-title">Navigation & Layout Konsistenz</div>
+                    <div class="timeline-description">Header-Höhen-Analyse und CSS-Template-Recherche</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">24.08.2025 - 20:30</div>
+                    <div class="timeline-title">Header-Fix Implementierung</div>
+                    <div class="timeline-description">Erstellung header-fix.css und header-absolute-fix.css</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">24.08.2025 - 21:15</div>
+                    <div class="timeline-title">Navigation-Styling Optimierung</div>
+                    <div class="timeline-description">Schriftgrößen-Vereinheitlichung und Logo-Design</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">24.08.2025 - 21:45</div>
+                    <div class="timeline-title">Layout-Template Bereinigung</div>
+                    <div class="timeline-description">Template-Untersuchung und Hero-Section-Fix</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">25.08.2025 - 00:00</div>
+                    <div class="timeline-title">Repository Setup & GitHub Integration</div>
+                    <div class="timeline-description">Laravel-Projekt initialisiert und auf GitHub gepusht</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">25.08.2025 - 00:25</div>
+                    <div class="timeline-title">Hero-Video Implementation</div>
+                    <div class="timeline-description">Video-Hintergrund ohne Play-Button implementiert</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">25.08.2025 - 00:35</div>
+                    <div class="timeline-title">Service Cards Optimization</div>
+                    <div class="timeline-description">Play-Buttons optimiert und Video-Modal repariert</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Farben Section -->
+        <section id="colors" class="section">
+            <h2 class="section-title">🎨 Farbpalette</h2>
+            
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-sample" style="background: #b68c2f;">
+                        Primary
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Primary Gold</div>
+                        <div class="color-hex">#b68c2f</div>
+                    </div>
+                </div>
+                
+                <div class="color-card">
+                    <div class="color-sample" style="background: #d4a543;">
+                        Light
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Gold Light</div>
+                        <div class="color-hex">#d4a543</div>
+                    </div>
+                </div>
+                
+                <div class="color-card">
+                    <div class="color-sample" style="background: #9a7528;">
+                        Dark
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Gold Dark</div>
+                        <div class="color-hex">#9a7528</div>
+                    </div>
+                </div>
+                
+                <div class="color-card">
+                    <div class="color-sample" style="background: #333333;">
+                        Text
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Charcoal</div>
+                        <div class="color-hex">#333333</div>
+                    </div>
+                </div>
+                
+                <div class="color-card">
+                    <div class="color-sample" style="background: #777777;">
+                        Muted
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Gray Medium</div>
+                        <div class="color-hex">#777777</div>
+                    </div>
+                </div>
+                
+                <div class="color-card">
+                    <div class="color-sample" style="background: #f5f5f5; color: #333;">
+                        Light
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Gray Light</div>
+                        <div class="color-hex">#f5f5f5</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

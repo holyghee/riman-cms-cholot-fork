@@ -1,0 +1,2143 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIMAN/Cholot - Design System Visual Style Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Colors - AUTHENTIC Cholot WordPress Theme */
+            --primary-gold: #b68c2f;
+            --primary-gold-light: #d4a543;
+            --primary-gold-dark: #9a7528;
+            --dark-charcoal: #1f1f1f;
+            --footer-black: #000000;
+            --body-text: #777777;
+            --heading-black: #000000;
+            --link-gray: #aaaaaa;
+            --light-gray: #F5F5F5;
+            --off-white: #FEFEFE;
+            --pure-white: #FFFFFF;
+            --text-dark: #000000;
+            --text-medium: #777777;
+            --text-light: #aaaaaa;
+            --overlay-dark: rgba(0, 0, 0, 0.7);
+            --overlay-light: rgba(255, 255, 255, 0.9);
+            --hero-overlay: rgba(0, 0, 0, 0.6);
+            --card-shadow: rgba(0, 0, 0, 0.1);
+            --card-shadow-hover: rgba(0, 0, 0, 0.15);
+            
+            /* Typography - AUTHENTIC Cholot WordPress Theme */
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+            --font-accent: 'Source Sans Pro', Arial, sans-serif;
+            --font-navigation: 'Source Sans Pro', Arial, sans-serif;
+            
+            /* Spacing - Enhanced for Cholot Theme */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --space-3xl: 64px;
+            --space-4xl: 96px;
+            --space-5xl: 128px;
+            
+            /* Border Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-circle: 50%;
+            
+            /* Layout */
+            --container-max-width: 1200px;
+            --hero-min-height: 70vh;
+            --header-height: 80px;
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.7;
+            color: var(--body-text);
+            background: var(--off-white);
+        }
+        
+        .container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+        
+        /* Responsive Design - AUTHENTIC Cholot Theme */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--space-xl) var(--space-md);
+            }
+            
+            .hero {
+                padding: 150px 15px;
+            }
+            
+            .hero-title {
+                font-size: 40px;
+            }
+            
+            .hero-accent {
+                letter-spacing: 6px;
+                font-size: 18px;
+            }
+            
+            .hero-subtitle,
+            .hero-line {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .featured-grid,
+            .service-grid,
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-container {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 100px 15px 50px;
+            }
+            
+            .hero-title {
+                font-size: 20px;
+            }
+            
+            .hero-accent {
+                letter-spacing: 4px;
+                font-size: 15px;
+            }
+            
+            .video-play-button {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+        
+        .section {
+            margin-bottom: var(--space-4xl);
+        }
+        
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--heading-black);
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-md);
+            border-bottom: 2px solid var(--primary-gold);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--accent-gold);
+        }
+        
+        .subsection-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--heading-black);
+            margin: var(--space-xl) 0 var(--space-lg) 0;
+        }
+        
+        /* Color Palette */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .color-card {
+            text-align: center;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .color-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .color-sample {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .color-info {
+            padding: var(--space-md);
+        }
+        
+        .color-name {
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+            color: var(--text-dark);
+        }
+        
+        .color-hex {
+            font-family: 'SF Mono', Monaco, monospace;
+            color: var(--text-medium);
+            font-size: 0.875rem;
+        }
+        
+        .color-usage {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: var(--space-xs);
+            font-style: italic;
+        }
+        
+        /* Typography */
+        .typography-samples {
+            background: white;
+            padding: var(--space-xl);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1.sample {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: var(--space-lg);
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+        
+        h2.sample {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: var(--space-lg);
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+        
+        h3.sample {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            color: var(--text-dark);
+            line-height: 1.4;
+        }
+        
+        h4.sample {
+            font-family: var(--font-body);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            color: var(--text-dark);
+        }
+        
+        .accent-text {
+            font-family: var(--font-accent);
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .body-text {
+            font-size: 1rem;
+            line-height: 1.625;
+            margin-bottom: var(--space-md);
+            color: var(--text-medium);
+        }
+        
+        .lead-text {
+            font-size: 1.25rem;
+            font-weight: 300;
+            line-height: 1.75;
+            color: var(--text-medium);
+        }
+        
+        .small-text {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+        
+        /* Buttons */
+        .button-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+        
+        .btn {
+            font-family: var(--font-body);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--primary-gold);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 0;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+            border: 2px solid var(--primary-gold);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--primary-gold);
+            border-color: var(--primary-gold);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-dark);
+            border: 2px solid var(--text-dark);
+            padding: 12px 24px;
+            border-radius: 0;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--text-dark);
+            color: white;
+        }
+        
+        .btn-cta {
+            background: var(--primary-gold);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 0;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-cta:hover::before {
+            left: 100%;
+        }
+        
+        .btn-outline {
+            background: #b68c2f;
+            color: #fff;
+            display: inline-block;
+            font-family: "Source Sans Pro", sans-serif;
+            font-weight: bold;
+            font-size: 15px;
+            padding: 10px 40px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease-out;
+        }
+        
+        .btn-outline:hover {
+            color: #b68c2f;
+        }
+        
+        .btn-outline::before {
+            background: #eee;
+            border-radius: 200px;
+            content: "";
+            display: block;
+            height: 200px;
+            left: -50%;
+            margin-top: -100px;
+            position: absolute;
+            top: 50%;
+            width: 200px;
+            z-index: 1;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.4s ease-out;
+        }
+        
+        .btn-outline::after {
+            background: #fff;
+            border-radius: 200px;
+            content: "";
+            opacity: 0.3;
+            display: block;
+            height: 200px;
+            left: -50%;
+            margin-top: -100px;
+            position: absolute;
+            top: 50%;
+            width: 200px;
+            z-index: 1;
+            transform: scale(0);
+            transition: all 0.4s ease-out;
+        }
+        
+        .btn-outline:hover::after,
+        .btn-outline:hover::before {
+            opacity: 1;
+            transform: scale(4);
+        }
+        
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-xl);
+            margin: var(--space-xl) 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: var(--space-lg);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--light-gray);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            margin-bottom: var(--space-lg);
+            position: relative;
+        }
+        
+        .card-icon::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 1px solid var(--primary-gold);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+        
+        .card-title {
+            font-family: var(--font-accent);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .card-description {
+            color: var(--medium-gray);
+            line-height: 1.625;
+            margin-bottom: var(--space-md);
+        }
+        
+        .card-link {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+        
+        .card-link:hover {
+            color: var(--accent-gold);
+        }
+        
+        /* Staff Card */
+        .staff-card {
+            text-align: center;
+            padding: var(--space-xl);
+        }
+        
+        .staff-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--sage-green), var(--soft-teal));
+            margin: 0 auto var(--space-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .staff-name {
+            font-family: var(--font-accent);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .staff-role {
+            color: var(--primary-blue);
+            font-weight: 500;
+            margin-bottom: var(--space-md);
+        }
+        
+        .staff-bio {
+            color: var(--medium-gray);
+            line-height: 1.625;
+            margin-bottom: var(--space-lg);
+        }
+        
+        /* Testimonial Card */
+        .testimonial-card {
+            background: linear-gradient(135deg, white 0%, var(--off-white) 100%);
+            padding: var(--space-xl);
+            position: relative;
+        }
+        
+        .quote-icon {
+            font-size: 48px;
+            color: var(--soft-teal);
+            opacity: 0.3;
+            position: absolute;
+            top: var(--space-md);
+            left: var(--space-lg);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1.125rem;
+            line-height: 1.75;
+            color: var(--dark-gray);
+            margin: var(--space-xl) 0 var(--space-lg) 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--coral), var(--warm-orange));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .author-info {
+            flex: 1;
+        }
+        
+        .author-name {
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .author-location {
+            color: var(--medium-gray);
+            font-size: 0.875rem;
+        }
+        
+        .rating {
+            color: var(--gold);
+            font-size: 18px;
+        }
+        
+        /* Forms - Cholot Theme Style */
+        .contact-form {
+            background: var(--light-gray);
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+        
+        .contact-form-title {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: var(--space-sm);
+            line-height: 1.3;
+        }
+        
+        .contact-form-subtitle {
+            font-size: 0.875rem;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .contact-form-description {
+            color: var(--text-medium);
+            margin-bottom: var(--space-xl);
+            line-height: 1.6;
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            color: var(--text-dark);
+            text-align: left;
+        }
+        
+        .form-input {
+            width: 100%;
+            border: 2px solid #E2E8F0;
+            border-radius: 0;
+            padding: 14px 16px;
+            font-size: 16px;
+            font-family: var(--font-body);
+            transition: border-color var(--transition-fast);
+            background: white;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23B8860B' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+        
+        .people-selector {
+            display: flex;
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+            justify-content: center;
+        }
+        
+        .people-option {
+            background: white;
+            border: 2px solid #E2E8F0;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-weight: 500;
+            min-width: 80px;
+        }
+        
+        .people-option:hover,
+        .people-option.active {
+            border-color: var(--primary-gold);
+            background: var(--primary-gold);
+            color: white;
+        }
+        
+        /* Hero Section - AUTHENTIC Cholot Theme */
+        .hero {
+            min-height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect width="1200" height="800" fill="%23f5f5f5"/><circle cx="200" cy="200" r="150" fill="%23e0e0e0" opacity="0.5"/><circle cx="800" cy="600" r="120" fill="%23d0d0d0" opacity="0.3"/><rect x="600" y="100" width="300" height="200" fill="%23e8e8e8" opacity="0.4" rx="10"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            position: relative;
+            text-align: center;
+            padding: 185px 15px;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .hero-accent {
+            font-family: "Source Sans Pro", sans-serif;
+            text-transform: uppercase;
+            color: #fff;
+            letter-spacing: 10px;
+            font-size: 20px;
+            margin: 0 0 20px;
+            font-weight: 500;
+        }
+        
+        .hero-title {
+            font-family: "Playfair Display";
+            color: #fff;
+            font-size: 80px;
+            margin: 0 0 20px;
+            text-transform: capitalize;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+        
+        .hero-title em {
+            color: #b68c2f !important;
+            font-style: italic;
+        }
+        
+        .hero-line {
+            height: 1px;
+            width: 300px;
+            background: #fff;
+            margin: 20px auto;
+            display: inline-block;
+        }
+        
+        .hero-subtitle {
+            color: #fff;
+            font-family: "Source Sans Pro", sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+        
+        /* Navigation - Based on Cholot Theme */
+        .nav {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            padding: var(--space-md) 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: background var(--transition-normal);
+        }
+        
+        .nav.scrolled {
+            background: rgba(0, 0, 0, 0.95);
+        }
+        
+        .nav-container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            text-decoration: none;
+        }
+        
+        .nav-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        
+        .nav-logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 400;
+            color: white;
+            letter-spacing: 0.02em;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: var(--space-2xl);
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-family: var(--font-navigation);
+            font-weight: 400;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color var(--transition-fast);
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-gold);
+        }
+        
+        .nav-cta {
+            background: var(--primary-gold);
+            color: white;
+            padding: 12px 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: none;
+            transition: background var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .nav-cta:hover {
+            background: var(--accent-gold);
+        }
+        
+        .nav-cta-phone {
+            font-size: 1rem;
+        }
+        
+        .nav-cta-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.2;
+        }
+        
+        .nav-cta-number {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        
+        .nav-cta-action {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+        
+        /* Footer - Cholot Theme Style mit authentischen Farben */
+        .footer {
+            background: var(--footer-black);
+            color: white;
+            padding: var(--space-3xl) 0 var(--space-xl) 0;
+            margin-top: var(--space-4xl);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+            align-items: start;
+        }
+        
+        .footer-logo-section {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+        }
+        
+        .footer-logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .footer-logo-content {
+            flex: 1;
+        }
+        
+        .footer-logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin-bottom: var(--space-xs);
+            line-height: 1.2;
+        }
+        
+        .footer-logo-subtitle {
+            font-size: 0.875rem;
+            color: #CBD5E0;
+            line-height: 1.3;
+        }
+        
+        .footer-section h4 {
+            font-family: var(--font-heading);
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: var(--space-lg);
+            color: var(--primary-gold);
+            position: relative;
+        }
+        
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--primary-gold);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .footer-links a {
+            color: #CBD5E0;
+            text-decoration: none;
+            transition: color var(--transition-fast);
+            font-size: 0.9rem;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-post {
+            margin-bottom: var(--space-md);
+        }
+        
+        .footer-post-title {
+            color: #CBD5E0;
+            font-size: 0.875rem;
+            margin-bottom: var(--space-xs);
+            line-height: 1.4;
+        }
+        
+        .footer-post-date {
+            color: var(--text-light);
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+        
+        .footer-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-xs);
+        }
+        
+        .footer-gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #404040 0%, #303030 100%);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            transition: transform var(--transition-fast);
+            cursor: pointer;
+        }
+        
+        .footer-gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #4A5568;
+            padding-top: var(--space-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-lg);
+            color: #CBD5E0;
+            font-size: 0.875rem;
+        }
+        
+        .footer-bottom-left {
+            font-size: 0.875rem;
+        }
+        
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+        
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: 0.875rem;
+        }
+        
+        .footer-contact a {
+            color: #CBD5E0;
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        .footer-contact a:hover {
+            color: white;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: var(--space-md);
+        }
+        
+        .footer-social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #CBD5E0;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            font-size: 1.1rem;
+        }
+        
+        .footer-social-link:hover {
+            background: var(--primary-gold);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Featured Content Layouts - Based on Cholot Theme */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-xl);
+            margin: var(--space-2xl) 0;
+        }
+        
+        .featured-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 8px 25px var(--card-shadow);
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+            position: relative;
+        }
+        
+        .featured-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px var(--card-shadow-hover);
+        }
+        
+        .featured-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .featured-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(184, 134, 11, 0.1) 0%, 
+                rgba(212, 175, 55, 0.1) 50%, 
+                rgba(218, 165, 32, 0.1) 100%);
+        }
+        
+        .featured-content {
+            padding: var(--space-xl);
+        }
+        
+        .featured-category {
+            background: var(--primary-gold);
+            color: white;
+            padding: 6px 12px;
+            border-radius: var(--radius-xl);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: var(--space-md);
+        }
+        
+        .featured-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: var(--space-md);
+            line-height: 1.3;
+        }
+        
+        .featured-description {
+            color: var(--text-medium);
+            line-height: 1.6;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .featured-meta {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+        
+        .featured-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gold);
+            border-radius: var(--radius-circle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            position: absolute;
+            bottom: -40px;
+            right: var(--space-xl);
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Video Placement Patterns */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: var(--space-xl) 0;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(0, 0, 0, 0.6) 0%, 
+                rgba(0, 0, 0, 0.3) 50%, 
+                rgba(0, 0, 0, 0.6) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-play-button {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gold);
+            border-radius: var(--radius-circle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            position: relative;
+        }
+        
+        .video-play-button:hover {
+            transform: scale(1.1);
+            background: var(--accent-gold);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .video-play-button::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid rgba(184, 134, 11, 0.3);
+            border-radius: var(--radius-circle);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        .video-caption {
+            position: absolute;
+            bottom: var(--space-lg);
+            left: var(--space-lg);
+            right: var(--space-lg);
+            text-align: center;
+            color: white;
+        }
+        
+        .video-title {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .video-subtitle {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Image Gallery Layouts */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-xl) 0;
+        }
+        
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--text-light);
+            transition: transform var(--transition-normal);
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(184, 134, 11, 0.0) 0%, 
+                rgba(184, 134, 11, 0.1) 100%);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+        
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+        
+        /* Service Feature Grid */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-2xl);
+            margin: var(--space-3xl) 0;
+        }
+        
+        .service-feature {
+            text-align: center;
+            background: white;
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .service-feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--accent-gold));
+        }
+        
+        .service-feature-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
+            border-radius: var(--radius-circle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            margin: 0 auto var(--space-lg);
+            position: relative;
+        }
+        
+        .service-feature-icon::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 2px solid rgba(184, 134, 11, 0.2);
+            border-radius: var(--radius-circle);
+        }
+        
+        .service-feature-label {
+            font-size: 0.8rem;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .service-feature-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: var(--space-md);
+        }
+        
+        .service-feature-description {
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation - Cholot Theme Style -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <div class="nav-logo-icon">🏛️</div>
+                <span class="nav-logo-text">Cholot</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#colors" class="nav-link">Colors</a></li>
+                <li><a href="#typography" class="nav-link">Typography</a></li>
+                <li><a href="#buttons" class="nav-link">Components</a></li>
+                <li><a href="#featured" class="nav-link">Featured</a></li>
+                <li><a href="#video" class="nav-link">Media</a></li>
+                <li><a href="#homepage" class="nav-link">Layout</a></li>
+                <li>
+                    <a href="#" class="nav-cta">
+                        <span class="nav-cta-phone">📞</span>
+                        <div class="nav-cta-text">
+                            <span class="nav-cta-number">+122-000-000</span>
+                            <span class="nav-cta-action">Schedule a Visit</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section - AUTHENTIC Cholot Structure -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-accent">for best and worst</p>
+            <h1 class="hero-title">Discover the best community that fit <em>your needs</em>.</h1>
+            <div class="hero-line"></div>
+            <p class="hero-subtitle">Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.</p>
+            <button class="btn btn-outline">View More</button>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Colors Section -->
+        <section id="colors" class="section">
+            <h2 class="section-title">Color Palette</h2>
+            
+            <h3 class="subsection-title">Primary Colors</h3>
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-sample" style="background: var(--primary-gold);">#b68c2f</div>
+                    <div class="color-info">
+                        <div class="color-name">Primary Gold</div>
+                        <div class="color-hex">#b68c2f</div>
+                        <div class="color-usage">Main accent, CTAs, highlights</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-sample" style="background: var(--heading-black); color: white;">#000000</div>
+                    <div class="color-info">
+                        <div class="color-name">Heading Black</div>
+                        <div class="color-hex">#000000</div>
+                        <div class="color-usage">Headlines, titles</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-sample" style="background: var(--body-text);">#777777</div>
+                    <div class="color-info">
+                        <div class="color-name">Body Text</div>
+                        <div class="color-hex">#777777</div>
+                        <div class="color-usage">Main body text</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-sample" style="background: var(--footer-black); color: white;">#000000</div>
+                    <div class="color-info">
+                        <div class="color-name">Footer Black</div>
+                        <div class="color-hex">#000000</div>
+                        <div class="color-usage">Footer background</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="subsection-title">Secondary Colors</h3>
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-sample" style="background: var(--dark-charcoal); color: white;">#1f1f1f</div>
+                    <div class="color-info">
+                        <div class="color-name">Dark Charcoal</div>
+                        <div class="color-hex">#1f1f1f</div>
+                        <div class="color-usage">Dark backgrounds</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-sample" style="background: var(--link-gray);">#aaaaaa</div>
+                    <div class="color-info">
+                        <div class="color-name">Link Gray</div>
+                        <div class="color-hex">#aaaaaa</div>
+                        <div class="color-usage">Default links</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-sample" style="background: var(--light-gray); color: var(--text-dark);">#F5F5F5</div>
+                    <div class="color-info">
+                        <div class="color-name">Light Gray</div>
+                        <div class="color-hex">#F5F5F5</div>
+                        <div class="color-usage">Backgrounds, dividers</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-sample" style="background: var(--pure-white); color: var(--text-dark); border: 1px solid #ddd;">#FFFFFF</div>
+                    <div class="color-info">
+                        <div class="color-name">Pure White</div>
+                        <div class="color-hex">#FFFFFF</div>
+                        <div class="color-usage">Cards, content areas</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography Section -->
+        <section id="typography" class="section">
+            <h2 class="section-title">Typography</h2>
+            <div class="typography-samples">
+                <p class="accent-text">Diverse and Inclusive</p>
+                <h1 class="sample">The senior living experience that is <em style="color: var(--primary-gold); font-style: italic;">tailored</em> to you.</h1>
+                <h2 class="sample">Thinking about <em style="color: var(--primary-gold); font-style: italic;">retirement?</em> Let us be your guide.</h2>
+                <h3 class="sample">From our <em style="color: var(--primary-gold); font-style: italic;">lovely</em> community, family & friends.</h3>
+                <h4 class="sample">Healthcare Services</h4>
+                <p class="lead-text">Building with our residents is something we keep close to our heart. Getting to know their personal stories and celebrating them together is what makes the care we provide truly personalized.</p>
+                <p class="body-text">Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.</p>
+                <p class="small-text">Design by ridianur 2019 with alot of Coffee.</p>
+            </div>
+        </section>
+
+        <!-- Buttons Section -->
+        <section id="buttons" class="section">
+            <h2 class="section-title">Button Styles</h2>
+            <div class="button-grid">
+                <button class="btn btn-primary">Schedule a Visit</button>
+                <button class="btn btn-secondary">Contact Us</button>
+                <button class="btn btn-cta">View More</button>
+                <button class="btn btn-outline">Learn More</button>
+            </div>
+            <div style="margin-top: var(--space-lg); color: var(--text-medium); font-size: 0.875rem;">
+                <p><strong>Primary:</strong> Golden buttons for main actions like scheduling visits</p>
+                <p><strong>Secondary:</strong> Outline buttons for secondary actions</p>
+                <p><strong>CTA:</strong> Bold golden buttons with subtle animations</p>
+                <p><strong>Outline:</strong> Minimal buttons for subtle calls-to-action</p>
+            </div>
+        </section>
+
+        <!-- Cards Section -->
+        <section id="cards" class="section">
+            <h2 class="section-title">Card Components</h2>
+            
+            <h3 class="subsection-title">Service Cards</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">🏥</div>
+                    <p class="accent-text">Spiritual</p>
+                    <h4 class="card-title">Healthy Life</h4>
+                    <p class="card-description">It's a great way for you to make use of all the benefits of being a part.</p>
+                    <a href="#" class="card-link">Learn more →</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon">👥</div>
+                    <p class="accent-text">Community</p>
+                    <h4 class="card-title">Counseling</h4>
+                    <p class="card-description">The enrichment programs aimed at keeping our residents healthy.</p>
+                    <a href="#" class="card-link">Learn more →</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <p class="accent-text">Everyday</p>
+                    <h4 class="card-title">Stay Active</h4>
+                    <p class="card-description">Give yourself a break and let us do the cooking and the cleaning.</p>
+                    <a href="#" class="card-link">Learn more →</a>
+                </div>
+            </div>
+            
+            <h3 class="subsection-title">Staff Card</h3>
+            <div class="card-grid">
+                <div class="card staff-card">
+                    <div class="staff-image">JD</div>
+                    <h4 class="staff-name">Jane Doe</h4>
+                    <p class="staff-role">Director of Nursing</p>
+                    <p class="staff-bio">With over 15 years of experience in senior care, Jane leads our nursing team with compassion and expertise.</p>
+                    <button class="btn btn-secondary">Contact Jane</button>
+                </div>
+            </div>
+            
+            <h3 class="subsection-title">Testimonial Card</h3>
+            <div class="card-grid">
+                <div class="card testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">"My daughter took me to visit senior communities eight years ago and when I walked into it, i knew that I had found my home. Absolutely stunning!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">IR</div>
+                        <div class="author-info">
+                            <div class="author-name">Irgan Rogan</div>
+                            <div class="author-location">Member</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">"My children and I couldn't be happier with my decision to make this my home! Most importantly, I feel loved here, from the caring staff to friends who look in on me."</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">PB</div>
+                        <div class="author-info">
+                            <div class="author-name">Peggy Brim</div>
+                            <div class="author-location">Member</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Content Section -->
+        <section id="featured" class="section">
+            <h2 class="section-title">Featured Content Layouts</h2>
+            
+            <h3 class="subsection-title">Three-Column Featured Grid</h3>
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <div class="featured-image">
+                        <div style="font-size: 3rem; color: var(--primary-gold);">🎯</div>
+                        <div class="featured-icon">💎</div>
+                    </div>
+                    <div class="featured-content">
+                        <span class="featured-category">Exciting</span>
+                        <h3 class="featured-title">Healthy Life</h3>
+                        <p class="featured-description">It's a great way for you to make use of all the benefits of being a part of our caring community.</p>
+                        <div class="featured-meta">
+                            <span>📅 Learn More</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="featured-card">
+                    <div class="featured-image">
+                        <div style="font-size: 3rem; color: var(--primary-gold);">🏖️</div>
+                        <div class="featured-icon">▶️</div>
+                    </div>
+                    <div class="featured-content">
+                        <span class="featured-category">Retired</span>
+                        <h3 class="featured-title">Improving Life</h3>
+                        <p class="featured-description">It's a great way for you to make use of all the benefits of being a part of our caring community.</p>
+                        <div class="featured-meta">
+                            <span>🎥 Watch Video</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="featured-card">
+                    <div class="featured-image">
+                        <div style="font-size: 3rem; color: var(--primary-gold);">👥</div>
+                        <div class="featured-icon">🏡</div>
+                    </div>
+                    <div class="featured-content">
+                        <span class="featured-category">Residents</span>
+                        <h3 class="featured-title">Relationship</h3>
+                        <p class="featured-description">It's a great way for you to make use of all the benefits of being a part of our caring community.</p>
+                        <div class="featured-meta">
+                            <span>📍 Explore More</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Service Features Grid</h3>
+            <div class="service-grid">
+                <div class="service-feature">
+                    <div class="service-feature-icon">🏥</div>
+                    <div class="service-feature-label">Spiritual</div>
+                    <h4 class="service-feature-title">Healthy Life</h4>
+                    <p class="service-feature-description">It's a great way for you to make use of all the benefits of being a part.</p>
+                </div>
+                
+                <div class="service-feature">
+                    <div class="service-feature-icon">👨‍⚕️</div>
+                    <div class="service-feature-label">Community</div>
+                    <h4 class="service-feature-title">Counseling</h4>
+                    <p class="service-feature-description">The enrichment programs aimed at keeping our residents healthy.</p>
+                </div>
+                
+                <div class="service-feature">
+                    <div class="service-feature-icon">⚡</div>
+                    <div class="service-feature-label">Everyday</div>
+                    <h4 class="service-feature-title">Stay Active</h4>
+                    <p class="service-feature-description">Give yourself a break and let us do the cooking and the cleaning.</p>
+                </div>
+                
+                <div class="service-feature">
+                    <div class="service-feature-icon">📅</div>
+                    <div class="service-feature-label">Event Date</div>
+                    <h4 class="service-feature-title">Meet Regularly</h4>
+                    <p class="service-feature-description">Let our residents live their life independently and enjoy their life.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video & Media Section -->
+        <section id="video" class="section">
+            <h2 class="section-title">Video & Media Placements</h2>
+            
+            <h3 class="subsection-title">Video Player with Overlay</h3>
+            <div class="video-container">
+                <div class="video-overlay">
+                    <div class="video-play-button">▶</div>
+                </div>
+                <div class="video-caption">
+                    <div class="video-title">Community Life at Cholot</div>
+                    <div class="video-subtitle">Discover what makes our retirement community special</div>
+                </div>
+            </div>
+            
+            <h3 class="subsection-title">Image Gallery Layout</h3>
+            <div class="image-gallery">
+                <div class="gallery-item">📷</div>
+                <div class="gallery-item">🏞️</div>
+                <div class="gallery-item">🏡</div>
+                <div class="gallery-item">👥</div>
+                <div class="gallery-item">🎨</div>
+                <div class="gallery-item">🌅</div>
+            </div>
+            
+            <div style="margin-top: var(--space-lg); color: var(--text-medium); font-size: 0.875rem;">
+                <p><strong>Video:</strong> Centered play button with subtle pulse animation and overlay text</p>
+                <p><strong>Gallery:</strong> Responsive grid with hover effects and consistent aspect ratios</p>
+                <p><strong>Usage:</strong> Perfect for showcasing community life, facilities, and resident activities</p>
+            </div>
+        </section>
+
+        <!-- Homepage Layout Example -->
+        <section id="homepage" class="section">
+            <h2 class="section-title">Complete Homepage Layout</h2>
+            
+            <div style="border: 2px solid var(--light-gray); border-radius: var(--radius-lg); overflow: hidden; background: white;">
+                <!-- Mini Header -->
+                <div style="background: rgba(0,0,0,0.9); color: white; padding: var(--space-md); display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                        <div style="width: 30px; height: 30px; background: var(--primary-gold); display: flex; align-items: center; justify-content: center; font-size: 14px;">🏛️</div>
+                        <span style="font-family: var(--font-heading); font-size: 1.25rem;">Cholot</span>
+                    </div>
+                    <div style="display: flex; gap: var(--space-lg); font-size: 0.8rem; text-transform: uppercase;">
+                        <span>Home</span>
+                        <span>About</span>
+                        <span>Service</span>
+                        <span>Contact</span>
+                        <span>Blog</span>
+                    </div>
+                    <div style="background: var(--primary-gold); padding: 8px 12px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">
+                        📞 +122-000-000 Schedule Visit
+                    </div>
+                </div>
+                
+                <!-- Mini Hero -->
+                <div style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), linear-gradient(135deg, #f0f0f0, #e0e0e0); color: white; padding: var(--space-2xl); text-align: left;">
+                    <div style="color: var(--primary-gold); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--space-sm); font-weight: 600;">For Best and Worst</div>
+                    <h2 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 400; margin-bottom: var(--space-md); line-height: 1.1;">Discover the best community<br>that fit <em style="color: var(--primary-gold); font-style: italic;">your needs</em>.</h2>
+                    <p style="font-size: 0.9rem; opacity: 0.9; margin-bottom: var(--space-lg); max-width: 400px; line-height: 1.5;">Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Maecenas tempus, tellus eget condimentum.</p>
+                    <button style="background: transparent; color: var(--primary-gold); border: 1px solid var(--primary-gold); padding: 8px 16px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">View More</button>
+                </div>
+                
+                <!-- Mini Featured Grid -->
+                <div style="padding: var(--space-xl); background: white;">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg);">
+                        <div style="text-align: center; padding: var(--space-lg); border-radius: var(--radius-md); background: #fafafa;">
+                            <div style="width: 50px; height: 50px; background: var(--primary-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-md); font-size: 1.5rem;">🎯</div>
+                            <div style="font-size: 0.7rem; color: var(--primary-gold); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-xs);">Exciting</div>
+                            <h4 style="font-family: var(--font-heading); font-size: 1rem; margin-bottom: var(--space-sm);">Healthy Life</h4>
+                            <p style="font-size: 0.8rem; color: var(--text-medium); line-height: 1.4;">Great benefits of being part of our community</p>
+                        </div>
+                        
+                        <div style="text-align: center; padding: var(--space-lg); border-radius: var(--radius-md); background: #fafafa; position: relative;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #2c2c2c, #1a1a1a); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-md); font-size: 1.5rem; color: white;">🏖️</div>
+                            <div style="position: absolute; top: 20px; right: 20px; width: 30px; height: 30px; background: var(--primary-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem;">▶</div>
+                            <div style="font-size: 0.7rem; color: var(--primary-gold); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-xs);">Retired</div>
+                            <h4 style="font-family: var(--font-heading); font-size: 1rem; margin-bottom: var(--space-sm);">Improving Life</h4>
+                            <p style="font-size: 0.8rem; color: var(--text-medium); line-height: 1.4;">Great benefits of being part of our community</p>
+                        </div>
+                        
+                        <div style="text-align: center; padding: var(--space-lg); border-radius: var(--radius-md); background: #fafafa;">
+                            <div style="width: 50px; height: 50px; background: var(--primary-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-md); font-size: 1.5rem;">👥</div>
+                            <div style="font-size: 0.7rem; color: var(--primary-gold); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-xs);">Residents</div>
+                            <h4 style="font-family: var(--font-heading); font-size: 1rem; margin-bottom: var(--space-sm);">Relationship</h4>
+                            <p style="font-size: 0.8rem; color: var(--text-medium); line-height: 1.4;">Great benefits of being part of our community</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mini About Section -->
+                <div style="padding: var(--space-xl); background: #f8f8f8; display: flex; gap: var(--space-xl); align-items: center;">
+                    <div style="flex: 1; width: 200px; height: 150px; background: linear-gradient(135deg, #e0e0e0, #d0d0d0); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--text-light);">📷</div>
+                    <div style="flex: 2;">
+                        <div style="font-size: 0.7rem; color: var(--primary-gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--space-sm);">ullamcorper matti pulvinar</div>
+                        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 400; margin-bottom: var(--space-md); line-height: 1.2;">Thinking about <em style="color: var(--primary-gold); font-style: italic;">retirement?</em> Let us be your guide.</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-medium); line-height: 1.5; margin-bottom: var(--space-lg);">Building with our residents is something we keep close to our heart. Getting to know their personal stories and celebrating them together is what makes the care we provide truly personalized.</p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg);">
+                            <div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                                    <div style="width: 40px; height: 40px; background: var(--primary-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">🏥</div>
+                                    <div>
+                                        <div style="font-size: 0.6rem; color: var(--primary-gold); text-transform: uppercase;">spiritual</div>
+                                        <div style="font-size: 0.9rem; font-weight: 600;">Healthy Life</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                                    <div style="width: 40px; height: 40px; background: var(--primary-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">👨‍⚕️</div>
+                                    <div>
+                                        <div style="font-size: 0.6rem; color: var(--primary-gold); text-transform: uppercase;">community</div>
+                                        <div style="font-size: 0.9rem; font-weight: 600;">Counseling</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+                                    <div style="width: 40px; height: 40px; background: var(--primary-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">⚡</div>
+                                    <div>
+                                        <div style="font-size: 0.6rem; color: var(--primary-gold); text-transform: uppercase;">everyday</div>
+                                        <div style="font-size: 0.9rem; font-weight: 600;">Stay Active</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                                    <div style="width: 40px; height: 40px; background: var(--primary-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">📅</div>
+                                    <div>
+                                        <div style="font-size: 0.6rem; color: var(--primary-gold); text-transform: uppercase;">event date</div>
+                                        <div style="font-size: 0.9rem; font-weight: 600;">Meet Regularly</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mini Testimonials -->
+                <div style="padding: var(--space-xl); background: white;">
+                    <div style="text-align: center; margin-bottom: var(--space-xl);">
+                        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 400; margin-bottom: var(--space-sm);">From our <em style="color: var(--primary-gold); font-style: italic;">lovely</em> community, family & friends.</h3>
+                        <div style="font-size: 0.7rem; color: var(--primary-gold); text-transform: uppercase; letter-spacing: 0.1em;">ullamcorper matulvinar</div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg);">
+                        <div style="background: #fafafa; padding: var(--space-lg); border-radius: var(--radius-md); text-align: center;">
+                            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; margin: 0 auto var(--space-md); font-size: 1.2rem;">PB</div>
+                            <p style="font-size: 0.8rem; font-style: italic; color: var(--text-medium); line-height: 1.4; margin-bottom: var(--space-md);">"My children and I couldn't be happier with my decision to make this my home!"</p>
+                            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: var(--space-xs);">Peggy Brim</div>
+                            <div style="font-size: 0.8rem; color: var(--text-light);">Member</div>
+                        </div>
+                        
+                        <div style="background: #fafafa; padding: var(--space-lg); border-radius: var(--radius-md); text-align: center;">
+                            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; margin: 0 auto var(--space-md); font-size: 1.2rem;">DM</div>
+                            <p style="font-size: 0.8rem; font-style: italic; color: var(--text-medium); line-height: 1.4; margin-bottom: var(--space-md);">"We have lived here for five years and the quality can't be beat."</p>
+                            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: var(--space-xs);">Dhea Marisa</div>
+                            <div style="font-size: 0.8rem; color: var(--text-light);">Member</div>
+                        </div>
+                        
+                        <div style="background: #fafafa; padding: var(--space-lg); border-radius: var(--radius-md); text-align: center;">
+                            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; margin: 0 auto var(--space-md); font-size: 1.2rem;">TS</div>
+                            <p style="font-size: 0.8rem; font-style: italic; color: var(--text-medium); line-height: 1.4; margin-bottom: var(--space-md);">"The restaurant offers excellent variety, quality and presentation."</p>
+                            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: var(--space-xs);">Thyo Septian</div>
+                            <div style="font-size: 0.8rem; color: var(--text-light);">Member</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mini CTA Section -->
+                <div style="padding: var(--space-xl); background: #f8f8f8; text-align: center;">
+                    <div style="font-size: 0.7rem; color: var(--primary-gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--space-sm);">the services we provide</div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 400; margin-bottom: var(--space-md); line-height: 1.2;">We're able to create a <em style="color: var(--primary-gold); font-style: italic;">family-like</em> atmosphere for our residents as well.</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-medium); line-height: 1.5; margin-bottom: var(--space-lg); max-width: 600px; margin-left: auto; margin-right: auto;">Once you experience our culture, you're sure to understand what makes us so special.</p>
+                </div>
+                
+                <!-- Mini Contact Form -->
+                <div style="padding: var(--space-xl); background: white; display: flex; gap: var(--space-xl); align-items: center;">
+                    <div style="flex: 1;">
+                        <div style="font-size: 0.7rem; color: var(--primary-gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--space-sm);">fringilla vela aliquet</div>
+                        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 400; margin-bottom: var(--space-md); line-height: 1.2;">Contact us for more info about our <em style="color: var(--primary-gold); font-style: italic;">excellent</em> community.</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-medium); line-height: 1.5;">Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+                    </div>
+                    <div style="flex: 1; background: #fafafa; padding: var(--space-lg); border-radius: var(--radius-md);">
+                        <div style="margin-bottom: var(--space-md);">
+                            <select style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem;">
+                                <option>1 People</option>
+                                <option>2 People</option>
+                                <option>3 People</option>
+                                <option>Family</option>
+                            </select>
+                        </div>
+                        <button style="background: var(--primary-gold); color: white; border: none; padding: 12px 24px; border-radius: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; width: 100%;">Get Information</button>
+                    </div>
+                </div>
+                
+                <!-- Mini Footer -->
+                <div style="background: var(--dark-charcoal); color: white; padding: var(--space-xl);">
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-lg); margin-bottom: var(--space-lg);">
+                        <div>
+                            <div style="display: flex; align-items: center; margin-bottom: var(--space-md);">
+                                <div style="color: var(--primary-gold); font-size: 1.5rem; margin-right: var(--space-sm);">🏛️</div>
+                                <div>
+                                    <h4 style="color: var(--primary-gold); margin: 0; font-size: 1.2rem;">Cholot</h4>
+                                    <p style="margin: 0; color: var(--text-light); font-size: 0.8rem;">Retirement Community</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--primary-gold); font-size: 0.9rem; margin-bottom: var(--space-md);">About us.</h4>
+                            <p style="color: #CBD5E0; font-size: 0.8rem; line-height: 1.4;">Building with our residents is something we keep close to our heart.</p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--primary-gold); font-size: 0.9rem; margin-bottom: var(--space-md);">Recent post.</h4>
+                            <div style="font-size: 0.8rem; color: #CBD5E0; line-height: 1.4;">
+                                <div style="margin-bottom: var(--space-sm);">📝 Aliquam lorem ante dapibus</div>
+                                <div>📝 Venenatis faucibus nullam</div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--primary-gold); font-size: 0.9rem; margin-bottom: var(--space-md);">Gallery.</h4>
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;">
+                                <div style="aspect-ratio: 1; background: var(--light-gray); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">📷</div>
+                                <div style="aspect-ratio: 1; background: var(--light-gray); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">📷</div>
+                                <div style="aspect-ratio: 1; background: var(--light-gray); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">📷</div>
+                                <div style="aspect-ratio: 1; background: var(--light-gray); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">📷</div>
+                                <div style="aspect-ratio: 1; background: var(--light-gray); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">📷</div>
+                                <div style="aspect-ratio: 1; background: var(--light-gray); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">📷</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="border-top: 1px solid #4A5568; padding-top: var(--space-lg); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: #CBD5E0;">
+                        <span>Design by ridianur 2019 with alot of Coffee.</span>
+                        <div style="display: flex; gap: var(--space-md);">
+                            <span>📍 Buah Batu Street 886 - ID</span>
+                            <span>📞 +122 - 000 - 000</span>
+                            <span>✉️ email@example.com</span>
+                        </div>
+                        <div style="display: flex; gap: var(--space-sm);">
+                            <span>📘</span> <span>🐦</span> <span>🎨</span> <span>📌</span> <span>📍</span> <span>📷</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: var(--light-gray); border-radius: var(--radius-md);">
+                <h3 style="font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: var(--space-md); color: var(--text-dark);">Layout Structure Notes</h3>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg); font-size: 0.875rem; color: var(--text-medium);">
+                    <div>
+                        <p><strong>Header:</strong> Fixed navigation with logo, menu, and prominent CTA button</p>
+                        <p><strong>Hero:</strong> Full-width background with large typography and clear value proposition</p>
+                        <p><strong>Features:</strong> Three-column grid showcasing key services with icons</p>
+                        <p><strong>About:</strong> Two-column layout with image and detailed service breakdown</p>
+                    </div>
+                    <div>
+                        <p><strong>Testimonials:</strong> Three-column testimonial cards with resident photos</p>
+                        <p><strong>CTA Section:</strong> Centered call-to-action with contact form</p>
+                        <p><strong>Footer:</strong> Four-column layout with company info, links, recent posts, and gallery</p>
+                        <p><strong>Colors:</strong> Consistent use of gold accent (#B8860B) throughout all sections</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section - Cholot Theme Style -->
+        <section id="forms" class="section">
+            <h2 class="section-title">Contact Form & Elements</h2>
+            
+            <h3 class="subsection-title">Main Contact Form</h3>
+            <div class="contact-form">
+                <div class="contact-form-subtitle">fringilla vela aliquet</div>
+                <h3 class="contact-form-title">Contact us for more info about our <em style="color: var(--primary-gold); font-style: italic;">excellent</em> community.</h3>
+                <p class="contact-form-description">Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+                
+                <div class="people-selector">
+                    <div class="people-option active">1 People</div>
+                    <div class="people-option">2 People</div>
+                    <div class="people-option">3 People</div>
+                    <div class="people-option">Family</div>
+                </div>
+                
+                <button class="btn btn-primary" style="margin-top: var(--space-lg);">Request Information</button>
+            </div>
+            
+            <h3 class="subsection-title">Standard Form Elements</h3>
+            <div class="card">
+                <form>
+                    <div class="form-group">
+                        <label class="form-label" for="name">Full Name</label>
+                        <input type="text" id="name" class="form-input" placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email Address</label>
+                        <input type="email" id="email" class="form-input" placeholder="your.email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-input" placeholder="(555) 123-4567">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="interest">Area of Interest</label>
+                        <select id="interest" class="form-input form-select">
+                            <option>Independent Living</option>
+                            <option>Assisted Living</option>
+                            <option>Memory Care</option>
+                            <option>Respite Care</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="message">Message</label>
+                        <textarea id="message" class="form-input form-textarea" placeholder="Tell us about your needs..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Inquiry</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer - Schöne 4-Spalten mit authentischen Cholot Farben -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Logo Section -->
+                <div class="footer-section">
+                    <div class="footer-logo-section">
+                        <div class="footer-logo-icon">🏛️</div>
+                        <div class="footer-logo-content">
+                            <h3 class="footer-logo-text">Cholot</h3>
+                            <div class="footer-logo-subtitle">Retirement Community</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- About Section -->
+                <div class="footer-section">
+                    <h4>About us.</h4>
+                    <p style="color: #CBD5E0; line-height: 1.6; margin-bottom: var(--space-md); font-size: 0.9rem;">Building with our residents is something we keep close to our heart.</p>
+                    <p style="color: #CBD5E0; line-height: 1.6; font-size: 0.9rem;">Let us help you celebrate your loved one's story by creating a new chapter that's worth sharing.</p>
+                </div>
+                
+                <!-- Recent Posts -->
+                <div class="footer-section">
+                    <h4>Recent post.</h4>
+                    <div class="footer-post">
+                        <a href="#" style="text-decoration: none;">
+                            <div class="footer-post-title">Aliquam lorem ante dapibus in tellus</div>
+                        </a>
+                        <div class="footer-post-date">
+                            <span>📅</span>
+                            <span>July 4, 2019</span>
+                        </div>
+                    </div>
+                    <div class="footer-post">
+                        <a href="#" style="text-decoration: none;">
+                            <div class="footer-post-title">Venenatis faucibus nullam quisenean</div>
+                        </a>
+                        <div class="footer-post-date">
+                            <span>📅</span>
+                            <span>July 4, 2019</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery -->
+                <div class="footer-section">
+                    <h4>Gallery.</h4>
+                    <div class="footer-gallery">
+                        <a href="#" class="footer-gallery-item">📷</a>
+                        <a href="#" class="footer-gallery-item">🏡</a>
+                        <a href="#" class="footer-gallery-item">🌅</a>
+                        <a href="#" class="footer-gallery-item">👥</a>
+                        <a href="#" class="footer-gallery-item">🎨</a>
+                        <a href="#" class="footer-gallery-item">🌸</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    Design by ridianur 2019 with alot of Coffee.
+                </div>
+                
+                <div class="footer-contact">
+                    <div class="footer-contact-item">
+                        <span>📍</span>
+                        <span>Buah Batu Street 886 - ID</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <span>📞</span>
+                        <span>+122 - 000 - 000</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <span>✉️</span>
+                        <a href="#">email@example.com</a>
+                    </div>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="#" class="footer-social-link">📘</a>
+                    <a href="#" class="footer-social-link">🐦</a>
+                    <a href="#" class="footer-social-link">🎨</a>
+                    <a href="#" class="footer-social-link">📌</a>
+                    <a href="#" class="footer-social-link">📍</a>
+                    <a href="#" class="footer-social-link">📷</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

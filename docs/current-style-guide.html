@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIMAN CMS - Aktueller Style Guide & Implementierungen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* RIMAN/Cholot Farben - Wie im aktuellen CSS */
+            --primary-gold: #b68c2f;
+            --primary-gold-light: #d4a543;
+            --primary-gold-dark: #9a7528;
+            --charcoal: #333333;
+            --charcoal-dark: #1a1a1a;
+            --white: #ffffff;
+            --off-white: #fafafa;
+            --light-gray: #f5f5f5;
+            --gray-medium: #777777;
+            
+            /* Schriftarten */
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+            
+            /* Abstände */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --space-3xl: 64px;
+            
+            /* Schatten */
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 8px rgba(0,0,0,0.15);
+            --shadow-lg: 0 8px 16px rgba(0,0,0,0.2);
+            
+            /* Transitions */
+            --transition-base: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--charcoal);
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        /* Guide Header mit RIMAN Design */
+        .guide-header {
+            background: linear-gradient(135deg, var(--charcoal-dark) 0%, var(--charcoal) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .guide-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><path d="M0 0L50 50L0 100M50 0L100 50L50 100" stroke="rgba(182,140,47,0.1)" stroke-width="0.5" fill="none"/></svg>');
+            opacity: 0.3;
+        }
+
+        .guide-header .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .guide-title {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            color: var(--white);
+            font-weight: 400;
+            padding: var(--space-2xl) 0 var(--space-lg);
+            line-height: 1.1;
+        }
+
+        .guide-subtitle {
+            font-family: var(--font-body);
+            font-size: 1.5rem;
+            color: var(--primary-gold-light);
+            margin-bottom: var(--space-xl);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Navigation wie RIMAN */
+        .guide-nav {
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--primary-gold);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .guide-nav-list {
+            display: flex;
+            list-style: none;
+            gap: var(--space-xl);
+            padding: var(--space-lg) 0;
+        }
+
+        .guide-nav-link {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: var(--space-sm) 0;
+            border-bottom: 2px solid transparent;
+            transition: all var(--transition-base);
+        }
+
+        .guide-nav-link:hover {
+            color: var(--primary-gold);
+            border-bottom-color: var(--primary-gold);
+        }
+
+        /* Sections */
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--charcoal-dark);
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-md);
+            border-bottom: 3px solid var(--primary-gold);
+            font-weight: 400;
+        }
+
+        .subsection-title {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--primary-gold);
+            margin: var(--space-xl) 0 var(--space-lg) 0;
+            font-weight: 400;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: #f8f8f8;
+            border-left: 4px solid var(--primary-gold);
+            border-radius: 4px;
+            padding: var(--space-md);
+            margin: var(--space-md) 0;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .code-inline {
+            background: rgba(182, 140, 47, 0.1);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: var(--primary-gold-dark);
+        }
+
+        /* RIMAN Hero Demo */
+        .hero-demo {
+            background: linear-gradient(135deg, var(--charcoal-dark) 0%, var(--charcoal) 100%);
+            color: var(--white);
+            padding: var(--space-3xl) 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            margin: var(--space-xl) 0;
+        }
+
+        .hero-demo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><path d="M0 0L50 50L0 100M50 0L100 50L50 100" stroke="rgba(182,140,47,0.1)" stroke-width="0.5" fill="none"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content-demo {
+            position: relative;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            z-index: 2;
+        }
+
+        .hero-title-demo {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--white);
+            margin-bottom: var(--space-md);
+            font-weight: 400;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle-demo {
+            font-family: var(--font-body);
+            font-size: 1.5rem;
+            color: var(--primary-gold-light);
+            margin-bottom: var(--space-xl);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* RIMAN Buttons */
+        .button-group {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: var(--space-lg) 0;
+        }
+
+        .btn-demo {
+            display: inline-block;
+            padding: var(--space-md) var(--space-xl);
+            font-family: var(--font-body);
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            transition: all var(--transition-base);
+            cursor: pointer;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .btn-primary-demo {
+            background: var(--primary-gold);
+            color: var(--white);
+            border-color: var(--primary-gold);
+        }
+
+        .btn-primary-demo:hover {
+            background: var(--primary-gold-dark);
+            border-color: var(--primary-gold-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(182, 140, 47, 0.3);
+        }
+
+        .btn-secondary-demo {
+            background: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .btn-secondary-demo:hover {
+            background: var(--white);
+            color: var(--charcoal-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Service Cards with Curved Images and Golden Icons - Live Implementation */
+        .service-grid-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-xl);
+            margin: var(--space-xl) 0;
+        }
+
+        .service-card-demo {
+            background: white;
+            border: none;
+            border-radius: 0;
+            padding: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 480px;
+            justify-content: flex-start;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: visible;
+        }
+
+        /* Dashed border using pseudo-element */
+        .service-card-demo::after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            border: 1px dashed rgba(182, 140, 47, 0.4);
+            border-radius: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* White overlay behind curved image */
+        .service-card-demo::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            height: 180px;
+            background: var(--white);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .service-card-demo:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 16px 32px rgba(182, 140, 47, 0.12),
+                0 8px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .service-card-demo:hover::after {
+            border-color: rgba(182, 140, 47, 0.6);
+        }
+
+        .service-image-demo {
+            width: 100%;
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+            clip-path: ellipse(100% 85% at 50% 0%);
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            z-index: 3;
+        }
+
+        .service-image-demo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-base);
+        }
+
+        .service-card-demo:hover .service-image-demo img {
+            transform: scale(1.05);
+        }
+
+        /* Play Button - Service Card Size */
+        .play-button-demo {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -20px);
+            z-index: 10;
+            transition: all var(--transition-base);
+            border: 1.5px solid var(--white);
+        }
+
+        .play-button-demo:hover {
+            background: rgba(182, 140, 47, 0.8);
+            transform: translate(-50%, -20px) scale(1.1);
+            border-color: var(--primary-gold);
+        }
+
+        /* Golden Icon Overlay */
+        .service-icon-demo {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #B68C2F 0%, #D4A644 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(182, 140, 47, 0.3);
+            transition: all var(--transition-base);
+            z-index: 4;
+            border: 4px solid var(--white);
+            color: white;
+            font-size: 36px;
+        }
+
+        .service-card-demo:hover .service-icon-demo {
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(182, 140, 47, 0.4);
+        }
+
+        /* Category Badge */
+        .service-category-demo {
+            position: absolute;
+            bottom: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #B68C2F;
+            background: transparent;
+            padding: 4px 8px;
+            z-index: 4;
+            white-space: nowrap;
+        }
+
+        .service-content-demo {
+            padding: 55px 30px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .service-title-demo {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--charcoal-dark);
+            margin-bottom: var(--space-4);
+            line-height: 1.3;
+            text-align: center;
+            transition: color var(--transition-base);
+        }
+
+        .service-card-demo:hover .service-title-demo {
+            color: #B68C2F;
+        }
+
+        .service-description-demo {
+            color: var(--gray-medium);
+            line-height: 1.7;
+            text-align: center;
+            margin-bottom: var(--space-8);
+            flex: 1;
+            max-width: 90%;
+        }
+
+        .service-link-demo {
+            color: #B68C2F;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: var(--font-body);
+            transition: all var(--transition-base);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-md);
+            display: inline-block;
+            margin-top: auto;
+        }
+
+        .service-link-demo:hover {
+            color: #9A7428;
+            background: rgba(182, 140, 47, 0.1);
+            transform: translateX(3px);
+        }
+
+        /* Implementation Cards */
+        .implementation-card {
+            background: var(--light-gray);
+            border-left: 4px solid var(--primary-gold);
+            padding: var(--space-lg);
+            border-radius: 4px;
+            margin: var(--space-md) 0;
+        }
+
+        .implementation-title {
+            font-weight: 600;
+            color: var(--charcoal-dark);
+            margin-bottom: var(--space-sm);
+        }
+
+        .implementation-description {
+            color: var(--gray-medium);
+            margin-bottom: var(--space-md);
+        }
+
+        /* Features List */
+        .features-list {
+            list-style: none;
+            margin: var(--space-lg) 0;
+        }
+
+        .features-list li {
+            padding: var(--space-md);
+            background: var(--light-gray);
+            margin-bottom: var(--space-sm);
+            border-radius: 4px;
+            position: relative;
+            padding-left: var(--space-2xl);
+            border-left: 3px solid var(--primary-gold);
+        }
+
+        .features-list li::before {
+            content: "✓";
+            position: absolute;
+            left: var(--space-md);
+            color: var(--primary-gold);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Video Modal Demo */
+        .modal-demo {
+            background: rgba(0,0,0,0.9);
+            padding: var(--space-2xl);
+            border-radius: 8px;
+            margin: var(--space-xl) 0;
+            text-align: center;
+        }
+
+        .modal-content-demo {
+            background: var(--charcoal-dark);
+            border: 2px solid var(--primary-gold);
+            border-radius: 8px;
+            padding: var(--space-xl);
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .modal-close-demo {
+            position: absolute;
+            top: var(--space-md);
+            right: var(--space-md);
+            width: 40px;
+            height: 40px;
+            background: var(--primary-gold);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Color Palette */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-xl) 0;
+        }
+
+        .color-card {
+            text-align: center;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-base);
+        }
+
+        .color-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .color-sample {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .color-info {
+            padding: var(--space-md);
+            background: white;
+        }
+
+        .color-name {
+            font-weight: 600;
+            color: var(--charcoal-dark);
+            margin-bottom: var(--space-xs);
+        }
+
+        .color-hex {
+            font-family: 'Monaco', monospace;
+            font-size: 0.9rem;
+            color: var(--gray-medium);
+        }
+
+        /* Timeline */
+        .timeline {
+            margin: var(--space-xl) 0;
+            padding-left: var(--space-xl);
+            border-left: 3px solid var(--primary-gold);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: var(--space-xl);
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: calc(-1 * var(--space-xl) - 8px);
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 4px var(--light-gray);
+        }
+
+        .timeline-time {
+            color: var(--primary-gold);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: var(--charcoal-dark);
+            margin-bottom: var(--space-sm);
+        }
+
+        .timeline-description {
+            color: var(--gray-medium);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header mit aktuellem RIMAN Design -->
+    <header class="guide-header">
+        <div class="container">
+            <h1 class="guide-title">RIMAN CMS Style Guide</h1>
+            <p class="guide-subtitle">Dokumentation unserer gemeinsamen Implementierungen</p>
+        </div>
+    </header>
+
+    <nav class="guide-nav">
+        <div class="container">
+            <ul class="guide-nav-list">
+                <li><a href="#current-design" class="guide-nav-link">Aktuelles Design</a></li>
+                <li><a href="#implementations" class="guide-nav-link">Implementierungen</a></li>
+                <li><a href="#components" class="guide-nav-link">Komponenten</a></li>
+                <li><a href="#timeline" class="guide-nav-link">Zeitverlauf</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Aktuelles Design Section -->
+        <section id="current-design" class="section">
+            <h2 class="section-title">🎨 Aktuelles Design System</h2>
+            
+            <h3 class="subsection-title">Design Charakteristika - Live Implementation</h3>
+            <ul class="features-list">
+                <li>Clean white background (#ffffff) throughout the site</li>
+                <li>Hero section with warm construction site photography and golden hour lighting</li>
+                <li>Service cards with curved elliptical images using clip-path</li>
+                <li>Golden circular icons (80px) that overlap and cut into image bottom</li>
+                <li>Subtle dashed borders (1px golden) around service cards</li>
+                <li>50px play buttons perfectly positioned for video overlays</li>
+                <li>Professional typography hierarchy with Playfair Display + Source Sans Pro</li>
+                <li>Smooth hover transitions with golden accent colors</li>
+                <li>Fully functional video modal system</li>
+                <li>Excellent responsive behavior across all viewports</li>
+            </ul>
+
+            <h3 class="subsection-title">Hero Section Demo</h3>
+            <div class="hero-demo">
+                <div class="hero-content-demo">
+                    <h1 class="hero-title-demo">Professionelles Rückbaumanagement</h1>
+                    <p class="hero-subtitle-demo">Ihr Partner für nachhaltige Sanierung und Mediation</p>
+                    <div class="button-group">
+                        <button class="btn-demo btn-primary-demo">Jetzt Beratung anfragen</button>
+                        <button class="btn-demo btn-secondary-demo">Unsere Leistungen</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementierungen Section -->
+        <section id="implementations" class="section">
+            <h2 class="section-title">🚀 Unsere Implementierungen</h2>
+
+            <h3 class="subsection-title">1. Hero Video mit Autoplay</h3>
+            <div class="implementation-card">
+                <h4 class="implementation-title">✅ Was wir gemacht haben:</h4>
+                <p class="implementation-description">
+                    Hero Video läuft automatisch im Hintergrund ohne Play-Button und ohne Popup-Modal.
+                </p>
+                
+                <h4 class="implementation-title">Code Implementation:</h4>
+                <div class="code-block">
+/* Hero Video Background - Auto-Play ohne Controls */
+.cholot-hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Verstecke alle Video-Controls */
+.cholot-hero .cholot-play-button,
+.cholot-hero .cholot-video-overlay,
+.cholot-hero video::-webkit-media-controls {
+    display: none !important;
+}</div>
+            </div>
+
+            <h3 class="subsection-title">2. Service Card Advanced Design</h3>
+            <div class="implementation-card">
+                <h4 class="implementation-title">✅ Live Implementation Features:</h4>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Curved Images:</strong> Using <code class="code-inline">clip-path: ellipse(100% 85% at 50% 0%)</code> for elegant bottom curve</li>
+                    <li><strong>Golden Icons:</strong> 80px circular icons with gradient background that overlap image</li>
+                    <li><strong>Dashed Borders:</strong> Subtle <code class="code-inline">1px dashed rgba(182, 140, 47, 0.4)</code> around cards</li>
+                    <li><strong>Category Labels:</strong> Positioned below icons with golden text</li>
+                    <li><strong>Play Buttons:</strong> 50px × 50px, perfectly centered on images</li>
+                    <li><strong>Hover Effects:</strong> 8px translateY with enhanced golden shadows</li>
+                    <li><strong>White Overlay:</strong> Pseudo-element to hide dashed border behind curved image</li>
+                </ul>
+                
+                <h4 class="implementation-title">CSS Architecture:</h4>
+                <div class="code-block">
+/* Curved image with elliptical clip-path */
+.cholot-service-image {
+  clip-path: ellipse(100% 85% at 50% 0%);
+  height: 280px;
+  overflow: hidden;
+}
+
+/* Golden overlapping icon */
+.cholot-service-icon {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #B68C2F 0%, #D4A644 100%);
+  border: 4px solid white;
+  z-index: 4;
+}</div>
+            </div>
+
+            <h3 class="subsection-title">3. Video Modal Reparatur</h3>
+            <div class="implementation-card">
+                <h4 class="implementation-title">🔧 Bug Fix:</h4>
+                <p class="implementation-description">
+                    Video Modal funktionierte nicht und Seite fror ein. Problem war <code class="code-inline">display: none !important</code> im CSS.
+                </p>
+                <h4 class="implementation-title">Lösung:</h4>
+                <div class="code-block">
+.cholot-video-modal {
+    display: none; /* NICHT display: none !important */
+    position: fixed;
+    z-index: 10000;
+}</div>
+            </div>
+        </section>
+
+        <!-- Komponenten Section -->
+        <section id="components" class="section">
+            <h2 class="section-title">🎨 Komponenten Library</h2>
+
+            <h3 class="subsection-title">Service Cards - Live Implementation</h3>
+            <div class="service-grid-demo">
+                <div class="service-card-demo">
+                    <div class="service-image-demo">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f0d090'/><text x='50' y='50' text-anchor='middle' dy='0.35em' fill='%23b68c2f' font-family='Arial,sans-serif' font-size='12'>CONSTRUCTION</text></svg>" alt="Construction site">
+                        <div class="play-button-demo">▶</div>
+                    </div>
+                    <div class="service-icon-demo">🏗️</div>
+                    <div class="service-category-demo">NACHHALTIG</div>
+                    <div class="service-content-demo">
+                        <h4 class="service-title-demo">Rückbaumanagement</h4>
+                        <p class="service-description-demo">Professionelle Planung und Durchführung von Rückbauarbeiten mit Fokus auf Nachhaltigkeit und Ressourcenschonung.</p>
+                        <a href="#" class="service-link-demo">Learn More →</a>
+                    </div>
+                </div>
+                
+                <div class="service-card-demo">
+                    <div class="service-image-demo">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23e8c47a'/><text x='50' y='50' text-anchor='middle' dy='0.35em' fill='%23b68c2f' font-family='Arial,sans-serif' font-size='12'>LANDSCAPE</text></svg>" alt="Landscape remediation">
+                        <div class="play-button-demo">▶</div>
+                    </div>
+                    <div class="service-icon-demo">⚖️</div>
+                    <div class="service-category-demo">FACHGERECHT</div>
+                    <div class="service-content-demo">
+                        <h4 class="service-title-demo">Altlastensanierung</h4>
+                        <p class="service-description-demo">Fachgerechte Sanierung kontaminierter Flächen und Gebäude nach modernsten Standards.</p>
+                        <a href="#" class="service-link-demo">Learn More →</a>
+                    </div>
+                </div>
+                
+                <div class="service-card-demo">
+                    <div class="service-image-demo">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23d4a543'/><text x='50' y='50' text-anchor='middle' dy='0.35em' fill='%23b68c2f' font-family='Arial,sans-serif' font-size='12'>MEDIATION</text></svg>" alt="Construction mediation">
+                        <div class="play-button-demo">▶</div>
+                    </div>
+                    <div class="service-icon-demo">🤝</div>
+                    <div class="service-category-demo">NEUTRAL</div>
+                    <div class="service-content-demo">
+                        <h4 class="service-title-demo">Mediation im Bauwesen</h4>
+                        <p class="service-description-demo">Professionelle Konfliktlösung und Risikomanagement für Bauprojekte.</p>
+                        <a href="#" class="service-link-demo">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Video Modal</h3>
+            <div class="modal-demo">
+                <div class="modal-content-demo">
+                    <button class="modal-close-demo">×</button>
+                    <p style="color: white; margin: 20px 0;">Video Modal Container</p>
+                    <div style="background: #222; height: 300px; display: flex; align-items: center; justify-content: center; border-radius: 4px;">
+                        <span style="color: #666; font-size: 48px;">▶</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Farbpalette</h3>
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-sample" style="background: #b68c2f;">
+                        Primary
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Primary Gold</div>
+                        <div class="color-hex">#b68c2f</div>
+                    </div>
+                </div>
+                
+                <div class="color-card">
+                    <div class="color-sample" style="background: #d4a543;">
+                        Light
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Gold Light</div>
+                        <div class="color-hex">#d4a543</div>
+                    </div>
+                </div>
+                
+                <div class="color-card">
+                    <div class="color-sample" style="background: #1a1a1a;">
+                        Dark
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Charcoal Dark</div>
+                        <div class="color-hex">#1a1a1a</div>
+                    </div>
+                </div>
+                
+                <div class="color-card">
+                    <div class="color-sample" style="background: #333333;">
+                        Charcoal
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Charcoal</div>
+                        <div class="color-hex">#333333</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="timeline" class="section">
+            <h2 class="section-title">⏱️ Projekt Timeline</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">24.08.2025 - 19:00 Uhr</div>
+                    <div class="timeline-title">Navigation & Layout Konsistenz</div>
+                    <div class="timeline-description">Header-Höhen-Analyse und CSS-Template-Recherche</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">24.08.2025 - 20:30 Uhr</div>
+                    <div class="timeline-title">Header-Fix Implementierung</div>
+                    <div class="timeline-description">Erstellung header-fix.css und header-absolute-fix.css</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">25.08.2025 - 00:00 Uhr</div>
+                    <div class="timeline-title">GitHub Repository Setup</div>
+                    <div class="timeline-description">Repository erstellt: github.com/holyghee/riman-cms-cholot-fork</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">25.08.2025 - 00:25 Uhr</div>
+                    <div class="timeline-title">Hero Video Autoplay</div>
+                    <div class="timeline-description">Video-Hintergrund ohne Play-Button implementiert</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">25.08.2025 - 00:35 Uhr</div>
+                    <div class="timeline-title">Service Cards & Modal Fix</div>
+                    <div class="timeline-description">Play-Buttons optimiert und Video-Modal repariert</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-time">25.08.2025 - 22:45 Uhr</div>
+                    <div class="timeline-title">Style Guide Accuracy Update</div>
+                    <div class="timeline-description">Complete design review and style guide alignment with live implementation</div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

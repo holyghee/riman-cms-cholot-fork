@@ -364,6 +364,7 @@ h6 { font-size: var(--text-lg); }
   width: 100%;
   height: 280px;
   overflow: visible;
+  z-index: 3; /* Ensure wrapper is above background elements */
 }
 
 /* Enhanced hover effects */
@@ -620,7 +621,7 @@ h6 { font-size: var(--text-lg); }
 /* Category label badge - positioned below icon */
 .cholot-service-category {
   position: absolute;
-  bottom: -45px;  /* Badge näher am Icon */
+  bottom: -70px;  /* Position badge below the repositioned icon */
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--font-body);
@@ -631,14 +632,14 @@ h6 { font-size: var(--text-lg); }
   color: #B68C2F;
   background: transparent;  /* Kein Hintergrund */
   padding: 4px 8px;
-  z-index: 4;
+  z-index: 11; /* Above the icon */
   white-space: nowrap;
 }
 
 /* Overlapping icon at image bottom - cuts into image */
 .cholot-service-icon {
   position: absolute;
-  bottom: -15px;  /* Icon sitzt höher */
+  bottom: -40px;  /* Position icon at bottom of image wrapper, overlapping into content */
   left: 50%;
   transform: translateX(-50%);
   width: 80px;
@@ -650,7 +651,7 @@ h6 { font-size: var(--text-lg); }
   justify-content: center;
   box-shadow: 0 4px 16px rgba(182, 140, 47, 0.3);
   transition: all var(--transition-base);
-  z-index: 4; /* Ensure icon appears above everything */
+  z-index: 10; /* Ensure icon appears above everything */
   border: 4px solid var(--white);
 }
 
@@ -676,7 +677,7 @@ h6 { font-size: var(--text-lg); }
 
 /* Content wrapper for proper spacing */
 .cholot-service-content {
-  padding: 55px 30px 30px; /* Weniger Padding wegen höherem Icon */
+  padding: 70px 30px 30px; /* More top padding to accommodate lower positioned icon */
   display: flex;
   flex-direction: column;
   align-items: center;
