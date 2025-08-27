@@ -621,7 +621,7 @@ h6 { font-size: var(--text-lg); }
 /* Category label badge - positioned below icon */
 .cholot-service-category {
   position: absolute;
-  bottom: -70px;  /* Position badge below the repositioned icon */
+  bottom: -30px;  /* Position badge below the repositioned icon */
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--font-body);
@@ -639,7 +639,7 @@ h6 { font-size: var(--text-lg); }
 /* Overlapping icon at image bottom - cuts into image */
 .cholot-service-icon {
   position: absolute;
-  bottom: -40px;  /* Position icon at bottom of image wrapper, overlapping into content */
+  bottom: 0px;  /* Position icon at bottom of image wrapper, overlapping into content */
   left: 50%;
   transform: translateX(-50%);
   width: 80px;
